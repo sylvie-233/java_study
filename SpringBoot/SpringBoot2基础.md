@@ -10,7 +10,7 @@ Sylvie233的SpringBoot2学习~~~
 
 >Update: 2022//19
 >
->Point: 动力节点SpringBoot教程P33
+>Point: 动力节点SpringBoot教程P50
 
 [TOC]
 
@@ -202,6 +202,29 @@ public class MyAppConfig implements WebMvcConfigurer {
             	.addPathPatterns()
             	.exlcudePathPatterns()
     }
+    
+    @Bean
+    public ServletRegistrationBean servletRegistrationBean() {
+        ServletRegistrationBean bean = new ServletRegistrationBean(new MyServlet, "/xxx")
+            
+            
+     	bean.setServlet(new MyServlet())
+            .addUrlMappings("/xxx")
+            .
+            
+        return bean
+    } 
+    
+    @Bean
+    public FilterRegistrationBean filterRegistrationBean() {
+        FilterRegistrationBean bean = new FilterRegistrationBean()
+            
+            
+     	bean.setFilter(new MyFilter())
+            .addUrlPatterns("/xxx/*")
+            
+        return bean
+    }
 }
 ```
 
@@ -244,6 +267,56 @@ class MyInterceptor implements HandlerInterceptor {
 
 
 配置拦截器
+
+
+
+### Servlet
+
+HttpServlet
+
+```java
+public class MyServlet extends HttpServlet {
+	protected void doGet()
+}
+```
+
+
+
+注册Servlet
+
+
+
+### Filter
+
+实现Filter接口
+
+```java
+public class MyFilter implements Filter {
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) {
+        
+    }
+}
+```
+
+
+
+注册Filter
+
+
+
+CharacterEncodingFilter
+
+springmvc提供的类
+
+```java
+CharacterEncodingFilter filter = new CharacterEncodingFilter()
+
+filter.setEncoding("utf-8")
+      .setForceEncoding(true)
+      .
+```
+
+字符编码默认ISO-8859-1
 
 
 
@@ -311,6 +384,55 @@ jsp编译配置
 
 
 
+### MyBatis集成
+
+安装依赖
+
+```
+mysql驱动依赖
+	mysql
+		mysql-connector-java
+			runtime
+		
+mybatis依赖
+	org.mybatis.spring.boot
+		mybatis-spring-boot-starter
+			2.1.4 
+
+mybaits依赖
+	1.spring-boot-starter-jdbc
+		HikariCP
+	2.mybatis
+	3.mybattis-spring
+```
+
+
+
+Dao层
+
+@Mappper/@MapperScan
+
+
+
+
+
+Mapper文件
+
+打包时引入.xml文件
+
+```
+<build>
+	<resources>
+		<resource>
+			<directory>src/main/java
+			<includes>
+				<include>**/*.xml
+```
+
+
+
+
+
 
 
 
@@ -353,7 +475,18 @@ ctx.getBean("id")
 
 
 
-### 2.HttpServletRequest/
+### 2.HttpServletRequest/HttpServletResponse
+
+```java
+req.
+
+
+resp.setContentType()
+    .getWriter()
+    .
+```
+
+
 
 
 
@@ -407,7 +540,19 @@ interface HandlerInterceptor {
 
 
 
-### 9.
+### 9.HttpServlet
+
+
+
+### 10.Filter
+
+
+
+### 11.
+
+
+
+
 
 
 
@@ -607,6 +752,34 @@ Configuration元数据
 
 
 
+### MyBatis常用注解
+
+### 1.@Parma
+
+
+
+### 2.@Mapper
+
+
+
+### 3.@MapperScan
+
+```
+@MapperScan(
+	basePackages = "",
+)
+```
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## SpringBoot常用配置
@@ -630,6 +803,11 @@ server:
 	port: 8088
 	servlet:
 		context-path: /xxx
+		encoding:
+			enabled: true
+			charset: utf-8
+			force: true 					# 强制req,resp使用
+			
 
 spring:
 	profile:
@@ -639,7 +817,14 @@ spring:
 		view:
 			prefix: /
 			suffix: .jsp
-			
+	
+	datsource:
+		driver-class-name: com.mysql,cj.jdbc.driver
+		url: jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=
+		username: root
+		password: 123456
+		
+
 ```
 
 
