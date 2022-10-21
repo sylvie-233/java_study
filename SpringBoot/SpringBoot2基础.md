@@ -10,7 +10,7 @@ Sylvie233的SpringBoot2学习~~~
 
 >Update: 2022//19
 >
->Point: 动力节点SpringBoot教程P50
+>Point: 动力节点SpringBoot教程P86
 
 [TOC]
 
@@ -230,6 +230,36 @@ public class MyAppConfig implements WebMvcConfigurer {
 
 
 
+Restful API
+
+表现层状态转移
+
+资源用url名词表示，动作用http请求方式表示
+
+form其它类型请求方式：
+
+过滤器转换请求方式：HiddenHttpMethodFilter
+
+```xml
+<input type="hidden" name="_method" value="put" />
+```
+
+
+
+
+
+动态路由
+
+```
+"/xxx/{id}""
+
+""
+```
+
+
+
+
+
 
 
 
@@ -319,6 +349,14 @@ filter.setEncoding("utf-8")
 字符编码默认ISO-8859-1
 
 
+
+
+
+
+
+### 事务
+
+@Transactional
 
 
 
@@ -430,6 +468,139 @@ Mapper文件
 ```
 
 
+
+事务
+
+DataSourceTransactionManager
+
+
+
+MyBatis逆向工程
+
+生成model、dao、mapper
+
+
+
+
+
+### Redis集成
+
+安装依赖
+
+```
+redis依赖
+	org.springframework.boot
+		spring-boot-starter-data-redis
+		
+redis依赖
+	1.lettuce-core
+	2.
+```
+
+
+
+RedisTemplate
+
+```java
+@Resource 
+public RedisTemplate redisTemplate;
+
+redisTemplate.setKeySerializer(new StringRedisSerializer())
+    .setValueSerializer(new StringRedisSerializer())
+    .
+
+
+```
+
+
+
+StringRedisTemplate
+
+对key和value使用String的序列化
+
+```
+@Resource 
+public StringRedisTemplate stringRedisTemplate;
+
+stringRedisTemplate.
+```
+
+
+
+
+
+ValueOperations
+
+```java
+ValueOperations vops = redisTemplate.opsForValue()
+    
+vops.set("k", "v")
+   .get("k")
+   .
+```
+
+
+
+序列化处理
+
+RedisTemplate默认使用JDK的序列化机制
+
+Json序列化：Jackson2JsonRedisSerializer
+
+
+
+### Dubbo集成
+
+Java RPC框架
+
+
+
+安装依赖
+
+```
+dubbo依赖
+	org.apache.dubbo
+		dubbo-spring-boot-starter
+			2.7.8
+
+dubbo-zookeeper依赖
+	org.apache.dubbo
+		dubbo-dependencies-zookeeper
+			2.7.8
+			<exclusion>
+				slf4j-log4j12
+					org.slf4j
+
+
+```
+
+
+
+公共依赖：接口interface项目
+
+zookeeper注册中心
+
+提供者、消费者
+
+排除log4j依赖
+
+
+
+
+
+provider提供者
+
+接口实现
+
+@DubboService暴露接口
+
+@EnableDubbo
+
+
+
+consumer消费者
+
+@DubboReference获取Service
 
 
 
@@ -748,13 +919,47 @@ Configuration元数据
 
 
 
-### 17.
+### 17.@Transactional
+
+
+
+### 18.@EnableTransactionManager
+
+
+
+### 19.@PathVariable
+
+
+
+### 20.@GetMapping/@PostMapping/@PutMapping/@DeleteMapping
+
+
+
+### 21.RestController
+
+@Controller+@ResponseBody
+
+
+
+### 22.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 ### MyBatis常用注解
 
-### 1.@Parma
+### 1.@Param
 
 
 
@@ -769,6 +974,38 @@ Configuration元数据
 	basePackages = "",
 )
 ```
+
+
+
+
+
+### Dubbo常用注解
+
+### 1.@DubboService
+
+```
+@DubboService(
+	interfaceClass = Xxx.class,
+	version = "1.0"
+)
+```
+
+
+
+### 2.@EnableDubbo
+
+
+
+### 3.@DubboReference
+
+```
+@DubboReference(
+	interfaceClass = Xxx.class,
+	version = "1.0"
+)
+```
+
+
 
 
 
@@ -810,6 +1047,8 @@ server:
 			
 
 spring:
+	application:
+		name: xxx
 	profile:
 		active: dev
 		
@@ -817,14 +1056,34 @@ spring:
 		view:
 			prefix: /
 			suffix: .jsp
+        hiddenmethod:
+        	filter:
+        		enabled: true
 	
 	datsource:
 		driver-class-name: com.mysql,cj.jdbc.driver
 		url: jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=
 		username: root
 		password: 123456
+	
+	redis:
+    	host: localhost
+    	port: 6379
+    
+    
+mybatis:
+	mapper-locations: classpath:mapper/*.xml
+	configuraion:
+		log-impl: com.xxx.Xxx
 		
-
+dubbo:
+	scan:
+		base-packages: com.xxx
+	protocol:
+		name: dubbo
+		port: 20881
+	registry:
+		address: zookeeper://localhost:2181
 ```
 
 
