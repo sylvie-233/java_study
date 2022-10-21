@@ -8,9 +8,9 @@ Sylvie233的SpringBoot2学习~~~
 
 
 
->Update: 2022//19
+>Update: 2022/10/21
 >
->Point: 动力节点SpringBoot教程P86
+>Point: 
 
 [TOC]
 
@@ -370,6 +370,316 @@ filter.setEncoding("utf-8")
 
 ## SpringBoot常用第三方库
 
+### Thymeleaf模板集成
+
+Java模板引擎
+
+
+
+安装依赖
+
+```
+Thymeleaf依赖
+	org.springframework.boot
+		spring-boot-starter-thymeleaf
+
+Thymeleaf依赖
+	1.thymeleaf-spring5
+	2.thymeleaf
+```
+
+
+
+html引入th命名空间
+
+```html
+<html xmlns:th="http://www.thymeleaf.org">
+</html>
+```
+
+
+
+
+
+模板引擎可以从Request作用域中获取数据
+
+
+
+使用Model存放数据
+
+```
+model.addAttribute("key", val)
+```
+
+
+
+表达式
+
+\[\[$key]]
+
+request作用域中的key
+
+使用Request或Model设置
+
+```html
+${key}
+[[${key}]]
+
+<div th:object="${obj}">
+	*{key}    
+</div>
+
+<div th:text="${key}">
+    
+@{url}
+@{/xxx(id=${xxx},)}
+    
+model.addAttribute("Key", val)
+    
+
+```
+
+
+
+Thymeleaf属性
+
+1.th:text
+
+2.th:style
+
+3.th:each
+
+```html
+<div th:each="item, stat : ${items}">
+    
+</div>
+
+stat变量
+	1.index
+	2.count
+	3.size
+	4.current
+	5.even/odd
+	6.first/last
+
+map_item变量
+	1.key
+	2.value
+```
+
+4.th:if/
+
+```
+
+```
+
+5.th:unless
+
+6.th:switch/th:case
+
+```html
+<div th:switch="${xxx}">
+    <div th:case="val1">
+        
+    </div>
+</div>
+
+th:case="*"
+```
+
+7.th:inline
+
+```
+th:inline="text"
+
+th:inline="javascript"
+```
+
+
+
+字面量
+
+- 字符串
+- 数字
+- 布尔
+- null
+
+
+
+运算符
+
+||
+
+```html
+<div th:text="|${xxx}|">
+    
+</div>
+```
+
+gt、lt、ge、le、eq、ne
+
+三元运算符：?:
+
+
+
+
+
+内置对象
+
+1.#request/request
+
+HttpservletRequest
+
+
+
+2.#session/session
+
+HttpSession
+
+session: 简化形式Map
+
+
+
+3.param
+
+
+
+
+
+4.#ctx
+
+
+
+5.application
+
+
+
+6.#execInfo
+
+```java
+
+```
+
+
+
+7.dates
+
+```java
+#dates.format(date)
+    .year(date)
+    .month(date)
+    .monthName(date)
+    .createNow()
+    .
+```
+
+
+
+8.#numbers
+
+```java
+#numbers.formatCurrency(num)
+    .formatDecimal(num, 5, 2)
+    .
+```
+
+
+
+
+
+9.#strings
+
+```java
+#strings.toUpperCase(str)
+    .indexOf(str, pat)
+    .subString(str, 2, 5)
+    .concat(str1, str2)
+    .length(str)
+    .isEmpth(str)
+    .
+```
+
+
+
+
+
+10.#lists
+
+```java
+#lists.size(list)
+    .contains(list, el)
+    .isEmpth(list)
+    .
+```
+
+
+
+非空处理
+
+?.
+
+
+
+自定义模板
+
+th:fragment
+
+```html
+<div th:fragment="name">
+    
+</div>
+```
+
+
+
+th:insert
+
+```html
+<div th:insert="~{ tmlName :: selector }">
+    
+</div>
+
+
+
+~{templatename :: selector}
+	文件名称：name
+
+th:insert="~{ dir/name :: selector }"
+```
+
+
+
+th:include
+
+```
+<div th:include="~{ tmlName :: selector }">
+    
+</div>
+
+th:include="~{ name :: html}"
+th:include="~{ name }"
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### JSP集成
 
 依赖
@@ -417,6 +727,35 @@ jsp编译配置
 				<include>**/*.*
 			
 ```
+
+
+
+War包部署
+
+主启动类继承SpringBootServletInitializer
+
+```java
+@SpringBOotApplication
+public class MyApp extends SpringBootServletInitializer {
+    public static void main(String[] args) {
+        
+    }
+    
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        builder.sources(MyApp.class)
+            
+         
+    }
+}
+```
+
+
+
+
+
+
+
+
 
 
 
@@ -649,8 +988,15 @@ ctx.getBean("id")
 ### 2.HttpServletRequest/HttpServletResponse
 
 ```java
-req.
-
+req.setAttribute("key", val)
+    .getAttrivute("key")
+    .getRequestURL()
+    .getRequestURI()
+    .getServerName()
+    .getQueryString()
+    .getContextPath()
+    .getServerPort()
+    .
 
 resp.setContentType()
     .getWriter()
@@ -663,13 +1009,16 @@ resp.setContentType()
 
 
 
-### 3.Model/
+### 3.Model/ModelAndView/
 
-```
+```java
 model.addAttribute(k, v)
 	 .
 	 
-	 
+ModelAndView mv = new ModelAndView()
+mv.setViewName("xxx")
+    .addObject("k", val)
+    .
 
 ```
 
@@ -719,7 +1068,20 @@ interface HandlerInterceptor {
 
 
 
-### 11.
+### 11.HttpSession
+
+```java
+session.geteId()
+    .
+```
+
+
+
+
+
+### 12.
+
+
 
 
 
@@ -935,13 +1297,41 @@ Configuration元数据
 
 
 
-### 21.RestController
+### 21.@RestController
 
 @Controller+@ResponseBody
 
 
 
-### 22.
+### 22.@Repository
+
+
+
+### 23.@Autowired
+
+
+
+### 24.@Qualifer
+
+
+
+### 25.@ControllerAdvice
+
+
+
+### 26.@ExceptionHandler
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1070,6 +1460,12 @@ spring:
     	host: localhost
     	port: 6379
     
+    thymeleaf:
+    	cache: false
+    	encoding: utf-8
+    	mode: HTML
+    	prefix: classpath:/templates
+    	suffix: .html
     
 mybatis:
 	mapper-locations: classpath:mapper/*.xml
@@ -1085,6 +1481,33 @@ dubbo:
 	registry:
 		address: zookeeper://localhost:2181
 ```
+
+
+
+
+
+## SpringBoot项目部署
+
+### jar包生成
+
+maven插件
+
+```
+<build>
+	<plugins>
+		<plugin>
+			org.springframework.boot
+				spring-boot-maven-plugin
+					1.4.2.RELEASE #有jsp时必须为此版本
+					
+
+```
+
+
+
+运行jar包
+
+`java -jar xxx.jar`
 
 
 
