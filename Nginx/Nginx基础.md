@@ -536,6 +536,19 @@ http { // http模块
 			empty_gif;
 			
 			check_status;				# 健康检查
+			
+			 
+		}
+		
+		location ~ \.php$ {
+			root html;
+			
+			fastcgi_pass 127.0.0.1:9000;										# 代理到php-cgi绑定的端口
+			fastcgi_pass unix:/xxx/php7.4-fpm.sock;								# 代理到解析器绑定的socket
+			fastcgi_index index.php;
+			fastcgi_split_path_info ^(.+\.php)(/.+)$;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			include fastcgi_params;
 		}
 		
 		

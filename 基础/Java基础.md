@@ -18,9 +18,47 @@ Sylvie233的Java基础学习~~~
 
 ## Java基础语法
 
+### NIO
+
+Selector、Channel、Buffer
+
 
 
 ## Java 标准库
+
+### java.io
+
+#### FileInputStream
+
+
+
+### java.nio
+
+#### channels
+
+##### FileChannel
+
+```
+FileChannel:
+	read():
+```
+
+
+
+
+
+#### ByteBuffer
+
+```
+ByteBuffer:
+	allocate():
+	---
+	clear():
+	compact():
+	flip(): 切换读写模式
+	get():
+	hasRemaining():
+```
 
 
 
