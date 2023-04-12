@@ -82,9 +82,63 @@ ik中文分词器`IKAnalyzer.cfg.xml`
 
 
 
+pinyin拼音分词器
+
+
+
+自定义分词器
+
+<img src="Elasticsearch基础.assets/image-20230211161310927.png" alt="image-20230211161310927" style="zoom:67%;" />
+
+
+
+
+
 文档控制
 
 并发修改文档时可使用乐观锁添加版本号
+
+<img src="Elasticsearch基础.assets/image-20230211132721995.png" alt="image-20230211132721995" style="zoom:67%;" />
+
+
+
+function score自定义得分
+
+<img src="Elasticsearch基础.assets/image-20230211152422834.png" alt="image-20230211152422834" style="zoom:67%;" />
+
+
+
+聚合
+
+<img src="Elasticsearch基础.assets/image-20230211153227598.png" alt="image-20230211153227598" style="zoom:67%;" />
+
+
+
+<img src="Elasticsearch基础.assets/image-20230211155304482.png" alt="image-20230211155304482" style="zoom:67%;" />
+
+
+
+
+
+自动补全
+
+suggest
+
+<img src="Elasticsearch基础.assets/image-20230211164202510.png" alt="image-20230211164202510" style="zoom:67%;" />
+
+
+
+<img src="Elasticsearch基础.assets/image-20230211164652140.png" alt="image-20230211164652140" style="zoom:67%;" />
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -118,7 +172,11 @@ cluster:
 			cluster_concurrent_rebalance:
 			node_concurrent_recoveries:
 			node_initial_primaries_recoveries:
-	
+discovery:
+	seed_hosts:
+	zen:
+		minimum_master_nodes:
+
 gateway:
 	recover_after_nodes:
 
@@ -142,6 +200,7 @@ node:
 	name:
 	master:
 	data:
+	ingest:
 
 
 network:
@@ -173,6 +232,14 @@ discovery.zen.fd.ping_retries:
 
 ### Restful
 
+DSL
+
+
+
+
+
+
+
 #### DELETE
 
 ```
@@ -189,6 +256,23 @@ DELETE:
 
 ```
 GET:
+	/:
+		响应对象:
+			name:
+			cluster_name:
+			cluster_uuid:
+			tagline:
+			version:
+				number:
+				build_flavor:
+				build_type:
+				bugild_hash:
+				build_date:
+				build_snapshot:
+				build_snapshot:
+				lucene_version:
+				minimum_wire_compatibility_version:
+				minimum_index_compatibility_version:
 	/_analyze:
 		请求对象:
 			analyzer: ik_max_word|ik_smart|standard
@@ -208,35 +292,137 @@ GET:
 	/xxx: 获取索引信息
 		/_doc:
 			/自定义id:
+				响应对象:
+					_index:
+					_type:
+					_id:
+					_version:
+					_seq_no:
+					_primary_term:
+					found:
+					_source: {}
 		/_search:	
 			?q: 设置查询条件
 			查询对象:
 				_source: 映射投影
 				aggs:
-					xxx名称:
+					xxx聚合名称:
+						aggs:
+							xxx聚合名称:
+								stats:
+									field:
 						avg:
 						terms: 分组
-							field
+							field:
+							order:
+								_count: asc|
+							size:
 				bool:
 					filter:
 						range:
 							自定义field:
 								gt:
-					must: []
+					must: [] //参与算分
 						match:
-					should: []
+					must_not:
+					should: [] //参与算分
 						match:
+							all:
+				explain: true
 				from:
 				highlight:
 					fields: []
+						xxx:
+							require_field_match: false|
+							pre_tags:
+							post_tags:
 				query:
+					function_score:
+						query:
+						functions: []
+							filter:
+								term:
+							weight:
+						boost_mode: multiply|
+					geo_bounding_box:
+						xxx:
+							top_left:
+							bottom_right:
+					get_distance:
+						xxx:
+						distance:
 					match:
 					match_all:
 					match_phrase:
+					multi_match:
+						query:
+						fields:
+					range:
+						xxx:
+							gte:
+							lte:
+					term:
+						xxx:
+							value:
 				size:
-				sort:
-					自定义field:
-						order
+				sort: []
+					xxx:
+						order: desc|asc
+					_geo_distance:
+						xxx:
+							lon:
+							lat:
+						order:
+						unit: km|
+                suggest:
+                	xxx提示名称:
+                		text:
+                		completion:
+                			field: 补全查询的字段
+                			skip_duplicates:
+                			size:
+			响应对象:
+				took:
+				timed_out:
+				_shards:
+				hits:
+					total:
+						value:
+						relation:
+					max_score:
+					hits: []
+						_index:
+						_type:
+						_id:
+						_score:
+						_source:
+						highlight:
+						sort:
+                aggregations:
+                	xxx聚合名:
+                		doc_count_error_upper_bound:
+                		sum_other_doc_count:
+                		buckets:
+                			key:
+                			doc_count:
+                			xxx聚合名:
+                				count:
+                				min:
+                				max:
+                				avg:
+                				sum:
+                suggest:
+                	xxx提示名: []
+                		texxt:
+                		offset:
+                		length: 
+                		options: [] 提示	结果
+                			text:
+                			_index:
+                			_type:
+                			_id:
+                			_score:
+                			_source:
 		请求对象:
         	settings:
                 analysis:
@@ -298,14 +484,17 @@ POST:
 				_version:
 				result:
 				_shards:
+					total:
+					successful:
+					failed:
 		/_mapping:
 			自定义field:
-				type: text|keyword|
+				type: text|keyword|integer|float|date|object|boolean|long
 				index:
-		/_update:
+		/_update: 增量更新
 			/自定义id
 			更新对象:
-				
+				doc: {}
 ```
 
 
@@ -320,6 +509,49 @@ PUT:
 		/_bulk:
 		/_doc:
 			/自定义id:
+				响应对象:
+					_index:
+					_type:
+					_id:
+					_version:
+					result: updated|
+					_shards:
+						total:
+						successful:
+						failed:
+					_seq_no:
+					_primary_term:
+		/_mapping:
+			请求对象:
+				properties:
+					xxx字段:
+						type:
+		settings:
+			number_of_shards:
+			number_of_replicas:
+			analysis:
+				analyzer:
+					xxx分词器名称:
+						tokenizer: ik_max_word|
+						filter: pinyin|自定义过滤器|
+				filter:
+					xxx过滤器名称:
+						type: pinyin
+						keep_full_pinyin:
+						kee-_joined_full_pinyin:
+						keep_original:
+						limit_first_letter_length:
+						remove_duplicated_term:
+						none_chinese_pinyin_tokenize:
+        mappings:
+            properties:
+                xxx字段:
+                    analayzer: ik_smart|
+                    search_analyzer: ik_smart|
+                    type: geo_point|completion|
+                    index:
+                    properties:
+                    copy_to:
 		响应:
 			acknowledged:
 			shards_acknowledged:
@@ -350,41 +582,56 @@ elasticsearch:
 
 ```
 RestHighLevelClient cli
-	.bulk()
+	.bulk():
+		BulkRequest:
 	.close()
 	.delete()
+		DeleteRequest:
 	.get()
+		GetRequest:
 	.index()
+		IndexRequest:
 	.indices()
-		.create()
+		.create():
+			CreateIndexRequest:
 		.delete()
+		exists():
 		.get()
 	.search()
+		SearchRequest:
 	.update()
+		UpdateRequest:
 		
 		
-CreateIndexRequest
+CreateIndexRequest:
+	source():
 CreateIndexResponse
 
 GetIndexRequest
 GetIndexResponse
 
-DeleteIndexReques
+DeleteIndexRequest
 DeleteIndexResponse
 
-IndexRequest
+IndexRequest:
+	id():
+    source():
 IndexResponse
 
-UpdateRequest
+UpdateRequest:
+	doc():
 UpdateResponse
 
 GetRequest
-GetResponse
+GetResponse:
+	getSourceAsString():
 
-DeleteRequest
+DeleteRequest:
+	
 DeleteResponse
 
-BulkRequest
+BulkRequest:
+	add():
 BulkResponse
 
 SearchRequest
@@ -395,37 +642,88 @@ SearchRequest
 				AggregationBuilders
 					.max()
 					.terms()
+					.field()
+					.size()
+					.stats()
+					.avg()
+					.count()
+					.filter()
 			.fetchSource()
 			.from()
 			.highlighter()
 				HighlightBuilder
+					.field()
+					.requireFieldMatch()
 					.preTags()
 					.postTags()
 			.query()
                 QueryBuilders
                 	.boolQuery()
                 		BoolQueryBuilder
+                			.filter()
                 			.must()
                 			.mustNot()
                 			.should()
+                	.boostingQuery()
+                	.functionScoreQuery()
+                		FunctionScoreQueryBuilder:
+                			FilterFunctionBuilder:
+                		ScoreFunctionBuilders:
+                			.weightFactorFunction()
                 	.fuzzyQuery()
                 		fuzziness()
                     .matchAllQuery()
+                    .matchQuery()
+                    .multiMatchQuery()
                     .rangQuery()
                     	RangeQueryBuilder
                     		.gte()
                     		.lte()
                     .termQuery()
                     	TermsQueryBuilder
-                    		
+                    .wrapperQuery()
             .size()
             .sort()
-            	SortBuilder
-            		
+            	SortBuilders:
+            		.geoDistanceSort()
+            			GeoPoint:
+                    .unit()
+                    .order()
+           	.suggest()
+            	SuggestBuilder()
+            		.addSuggestion()
+            			SuggestBuilders:
+            				.completionSuggestion()
+            				.prefix()
+            				.skipDuplicates()
+            				.size()
 SearchResponse
 	.getHits()
 		SearchHits:
+			.getHits()
+				SearchHit:
+					.getSourceAsString()
+					.getHighlightFields()
+						HighlightField:
+							.getFragments()
+								.string()
+                    .getSortValues()
 			.getTotalHits()
+				value:
+    .getAggregations()
+    	Aggregations:
+    		.get()
+    			Terms:
+    				.getBuckets()
+    					Terms.Bucket:
+    						.getKeyAsString()
+    .getSuggest()
+    	Suggest:
+    		.getSuggestion()
+    			CompletionSuggestion:
+    				.getOptions()
+    					CompletionSuggestion.Entry.Option:
+    						.getText().string()
 ```
 
 
@@ -565,11 +863,41 @@ zenDiscovery模块选主
 
 
 
+cerebro监控es集群状态
+
+Web界面
 
 
 
 
 
+集群节点角色
+
+<img src="Elasticsearch基础.assets/image-20230211175045460.png" alt="image-20230211175045460" style="zoom:67%;" />
+
+
+
+集群结构
+
+<img src="Elasticsearch基础.assets/image-20230211175453356.png" alt="image-20230211175453356" style="zoom:67%;" />
+
+
+
+
+
+
+
+数据分片
+
+<img src="Elasticsearch基础.assets/image-20230211180213378.png" alt="image-20230211180213378" style="zoom:67%;" />
+
+
+
+分片数据存储
+
+<img src="Elasticsearch基础.assets/image-20230211180409291.png" alt="image-20230211180409291" style="zoom:67%;" />
+
+<img src="Elasticsearch基础.assets/image-20230211180453524.png" alt="image-20230211180453524" style="zoom:67%;" />
 
 
 
