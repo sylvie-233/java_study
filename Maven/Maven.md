@@ -1,6 +1,6 @@
 # Mavan
 
-> Point: P66
+> Point: P146
 
 [TOC]
 
@@ -112,6 +112,21 @@ maven:
                     <groupId>
                     <artiractId>
                     <version>
+	
+	<build>: 构建配置
+		<finalName>
+		
+		<plugins>
+			<plugin>
+				<groupId>
+                <artifactId>
+                <version>
+                
+                <dependencies>
+                	<groupId>
+                    <artifactId>
+                    <version>
+                
 ```
 
 
