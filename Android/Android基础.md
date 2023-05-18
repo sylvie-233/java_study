@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: P22
+> Point: P34
 
 
 
@@ -209,9 +209,9 @@ Android单位
 
 
 
+静态调用、动态调用
 
-
-
+FragmentManager、FragmentTrasaction、
 
 
 
@@ -225,11 +225,27 @@ Android单位
 
 ### View
 
+#### ConstraintLayout
+
+
+
 #### FrameLayout
 
 
 
 #### GridLayout
+
+
+
+#### LinearLayout
+
+```
+LinearLayout:
+	---
+	addView():
+```
+
+
 
 
 
@@ -245,17 +261,238 @@ Android单位
 
 
 
+
+
+#### Button
+
+```
+Button:
+	drawableLeft:
+	text:
+	---
+	setOnClickListener():
+```
+
+
+
+
+
+#### CalendarView
+
+
+
+#### CheckBox
+
+```
+CheckBox:
+	text:
+	---
+	isChecked():
+```
+
+
+
+
+
 #### EditText
+
+```
+EditText:
+	editable:
+	gravity:
+	hint:
+	imeOptions:
+		actionDone:
+		actionGo:
+		actionSearch:
+	inputType:
+		numberSigned:
+		phone:
+		text:
+		textPassword:
+	lines:
+	maxLength:
+	numeric:
+	password:
+	textColorHint:
+	---
+	getText():
+```
+
+
+
+
+
+#### HorizontalScrollView
+
+
+
+#### ImageButton
+
+```
+ImageButton:
+	src:
+```
+
+
 
 
 
 #### ImageView
+
+```
+ImageView:
+	ScaleType:
+		CENTER_CROP:
+	scaleType:
+		center: 中间
+		fitCenter:
+		fitStart:
+		fitXY:
+		matrix:
+	src:
+	---
+	setImageResource():
+	setScaleType:
+```
+
+
+
+
+
+#### ListView
+
+
+
+#### MapView
+
+
+
+#### ProgressBar
+
+```
+ProgressBar:
+	
+```
+
+
+
+
+
+#### RadioButton
+
+```
+RadioButton:
+	---
+	getText():
+	isChecked():
+```
+
+
+
+#### RadioGroup
+
+```
+RadioGroup:
+	id:
+	---
+	setOnCheckedChangeListener():
+```
+
+
+
+
+
+#### Spinner
+
+
+
+#### Switch
+
+```
+Switch:
+	textOff:
+	textOn:
+	---
+```
 
 
 
 
 
 #### TextView
+
+```
+TextView:
+	text:
+	textSize:
+	---
+	setText():
+	setTextColor():
+```
+
+
+
+
+
+#### Toast
+
+```
+Toast:
+    makeText():
+	---
+	getView():
+	setDuration():
+	setGravity():
+	setView():
+	show():
+```
+
+
+
+
+
+#### ToggleButton
+
+```
+ToggleButton:
+	textOff:
+	textOn:
+	---
+	isChecked():
+```
+
+
+
+
+
+#### WebView
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Content
+
+
+
+
+
+
+
+### Window
 
 
 
@@ -274,6 +511,18 @@ Android单位
 ## API
 
 ```
+android:
+	util:
+		DisplayMetrics:
+			heightPixels:
+			widthPixels:
+	view:
+		View:
+			findViewById():
+	widget:
+		Button:
+		TextView:
+
 androidx:
 	constraintlayout:
 		widget:
@@ -287,6 +536,9 @@ androidx:
 
 AppCompatActivity:
 	findViewById():
+	getApplicationContext():
+	getLayoutInflater():
+	onAttachFragment():
 	onCreate():
 	setContentView():
 	startActivity():
@@ -300,15 +552,32 @@ EditText:
 	getText():
 EventActivity:
 	this:
+Fragment:
+	getActivity():
+	onActivityCreated():
+	onCreateView():
+FragmentManager:
+	---
+	add():
+	beginTransaction():
+	commit():
+	commitNow():
+	findFragmentById():
+	remove():
 FrameLayout:
 GridLayout:
 ImageView:
 	src:
+	---
+	getDrawable():
+	setImageDrawable():
 Intent:
 	---
 	setAction():
 	setClassName():
 	setComponent():
+LayoutInflater:
+	inflate():
 LinearLayout:
 	layout_gravity:
 	layout_height:
