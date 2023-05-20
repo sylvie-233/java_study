@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 安卓基础 P38|Jetpack P
+> Point: 安卓基础 P38|Jetpack P10
 
 
 
@@ -630,9 +630,26 @@ class MainActivity:
 
 
 
+##### BindingAdapter
+
+@{}的代码扩展使用，自动被扫描进value对应的属性中
+
+```
+class XxxAdapter:
+	@BindingAdapter(value={"imageUrl"})
+	void loadUlr(view, url)
+		view|view.getContext()
+```
+
+
+
+
+
+
+
 #### Lifecycles
 
-观察Activity、Fragment生命周期的变化
+观察Activity、Fragment生命周期的变化，执行观察者的代码、销毁观察者对象
 
 
 
@@ -640,7 +657,7 @@ class MainActivity:
 
 #### ViewModel
 
-存储LiveData数据，和修改LiveData的方法
+存储LiveData数据，和修改LiveData的方法，ViewModelStore
 
 
 
