@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: P34
+> Point: 安卓基础 P38|Jetpack P
 
 
 
@@ -372,7 +372,13 @@ ImageView:
 
 ```
 ProgressBar:
-	
+	max:
+	min:
+	progress:
+	progressDrawable:
+	style:
+	---
+	setProgress():
 ```
 
 
@@ -424,6 +430,8 @@ Switch:
 
 ```
 TextView:
+	autoLink:
+		web:
 	text:
 	textSize:
 	---
@@ -500,9 +508,163 @@ ToggleButton:
 
 ### Resource
 
+#### Android内置资源
+
+```
+@android:id:
+	background:
+	progress:
+	
+@android:style:
+	Widget:
+		ProgressBar:
+			Horizontal:
+```
 
 
 
+#### \<layer-list>
+
+```
+<layer-list>
+	<item
+		left:
+		top:
+	>
+		<bitmap
+			src:
+			gravity:
+		>
+		<scale
+			scaleWidth:
+			drawable:
+		>
+		<shape>
+			<solid>
+			<gradient
+				angle:
+				startColor:
+				endColor:
+			>
+```
+
+
+
+
+
+#### \<resources>
+
+```
+<resources>
+	<string>
+```
+
+
+
+#### \<selector>
+
+```
+<selector>
+	<item
+		state_focused:
+		state_pressed:
+		color:
+		drawable:
+	>
+```
+
+
+
+
+
+
+
+### JetPack
+
+
+
+Google推出的一套系列组件集
+
+
+
+#### AppCompat
+
+
+
+#### 数据绑定
+
+##### DataBinding
+
+```
+<layout>
+	<data>
+		<variable
+			name: _vm（通过@{_vm.xxx}使用VM属性）
+			type: VM全类名
+		>
+```
+
+
+
+Activety中实现Binding，并注入ViewModel（xml中声明的ViewModel）
+
+```
+class MainActivity:
+	ActivityMainBinding binding
+	MainViewModel mainViewModel
+	
+	onCreate()
+		// 绑定vm数据
+		binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+		/*
+			旧版本：
+			mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class)
+		*/
+		mainViewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication()).get(MainViewModel.class))
+		binding.setVm(mainViewModel)
+		// 建立感应
+		binding.setLifecycleowner(this)
+```
+
+
+
+
+
+#### Lifecycles
+
+观察Activity、Fragment生命周期的变化
+
+
+
+
+
+#### ViewModel
+
+存储LiveData数据，和修改LiveData的方法
+
+
+
+
+
+#### LiveData
+
+感应变化的数据，值变化能触发界面刷新
+
+
+
+#### Room
+
+
+
+#### Paging
+
+
+
+#### Navigation
+
+
+
+#### WorkManager
 
 
 
@@ -512,6 +674,15 @@ ToggleButton:
 
 ```
 android:
+	R:
+		attr:
+			state_enabled:
+			state_focused:
+			state_pressed:
+		drawable:
+        id:
+        layout:
+		
 	util:
 		DisplayMetrics:
 			heightPixels:
@@ -530,7 +701,13 @@ androidx:
     fragment:
     	app:
     		Fragment:
-
+	lifecycle:
+		AndroidViewModel:
+		LiveData:
+			observe():
+			postValue():
+		MutableLiveData<T>:
+		ViewModel
 
 
 
@@ -538,6 +715,7 @@ AppCompatActivity:
 	findViewById():
 	getApplicationContext():
 	getLayoutInflater():
+	getResources():
 	onAttachFragment():
 	onCreate():
 	setContentView():
@@ -547,6 +725,7 @@ Button:
 	id:
 	text:
 ComponentName:
+Drawable:
 EditText:
 	hint:
 	getText():
@@ -566,6 +745,8 @@ FragmentManager:
 	remove():
 FrameLayout:
 GridLayout:
+Handler:
+	postDelayed():
 ImageView:
 	src:
 	---
@@ -590,11 +771,11 @@ Log:
 	e():
 	i():
 	w():
-R:
-	id:
-	layout:
 RelativeLayout:
 Space:
+Spannable:
+StateListDrawable:
+StyleSpan:
 TableLayout:
 TextView:
 	
