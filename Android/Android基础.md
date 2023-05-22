@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 安卓基础 P38|Jetpack P10
+> Point: 安卓基础 P46|Jetpack P10
 
 
 
@@ -84,6 +84,10 @@ Android单位
 ```
 <manifest>
 	<supports-screens>
+	<uses_sdk
+		minSdkVersion:
+		targetSdkVersion:
+	>
 	<applicatioin
 		allowBackup:
 		icon:
@@ -194,6 +198,24 @@ Android单位
 
 
 #### Intent
+
+```
+Intent:
+	ACTION_SEND:
+	EXTRA_SUBJECT:
+	EXTRA_TEXT:
+    FLAG_ACTIVITY_NEW_TASK:
+    createChooser():
+	---
+
+	putExtra():
+	setAction():
+	setFlags():
+	setType():
+	
+```
+
+
 
 
 
@@ -502,6 +524,108 @@ ToggleButton:
 
 ### Window
 
+#### Menu
+
+`menu.xml`
+
+```
+<menu>
+	<group
+		checkableBehavior:
+	>
+		<item>
+	<item
+		id:
+		title:
+		icon:
+		orderInCategory:
+		app:actionViewClass:
+		app:showAsAction:
+			never:
+			ifRoom:
+			withText:
+			collapseActionView:
+	>
+		<menu> // 嵌套menu
+```
+
+##### MenuItem
+
+```
+MenuItem:
+	getActionView():
+	setOnActionExpandListener():
+		onMenuItemActionExpand():
+		onMenuItemActionCollapse():
+```
+
+
+
+
+
+
+
+#### PopupMenu
+
+```
+PopupMenu:
+	inflate();
+	setOnMenuItemClickListener():
+	show():
+```
+
+
+
+#### ContextMenu
+
+```
+ContextMenu:
+	add():
+```
+
+
+
+
+
+##### ContextMenuInfo	
+
+
+
+#### Toolbar
+
+
+
+#### ActionMode
+
+```
+ActionMode:
+	Callback:
+		onActionItemClicked():
+		onCreateActionMode:
+		onDestroyActionMode():
+		onPrepareActionMode():
+```
+
+
+
+#### ActionView
+
+```
+ActionView:
+```
+
+
+
+#### ActionProvider
+
+```
+ActionProvider:
+```
+
+
+
+
+
 
 
 
@@ -715,6 +839,9 @@ androidx:
 	constraintlayout:
 		widget:
 			ConstraintLayout:
+	coordinatorlayout:
+		widget:
+			Coordinatorlayout:	
     fragment:
     	app:
     		Fragment:
@@ -732,10 +859,18 @@ AppCompatActivity:
 	findViewById():
 	getApplicationContext():
 	getLayoutInflater():
+	getMenuInflater():
 	getResources():
 	onAttachFragment():
+	onContextItemSelected():
 	onCreate():
+	onCreateContextMenu():
+	onCreateOptionsMenu():
+	onOptionsItemSelected():
+	registerForContextMenu():
 	setContentView():
+	setSupportActionBar():
+	startActionMode():
 	startActivity():
 Bundle:
 Button:
@@ -769,6 +904,7 @@ ImageView:
 	---
 	getDrawable():
 	setImageDrawable():
+	setOnLongClickListener():
 Intent:
 	---
 	setAction():
