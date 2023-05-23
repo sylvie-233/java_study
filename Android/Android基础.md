@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 安卓基础 P46|Jetpack P10
+> Point: 安卓基础 P52|Jetpack P10
 
 
 
@@ -66,6 +66,7 @@ Android单位
                 /menu:
                 /mipmap: (xxxhdpi|xxhdpi|xhdpi|hdpi|mdpi)
                 	/ic_launcher:
+                /navigation:
                 /raw:
                 /values:
                     colors.xml:
@@ -79,6 +80,8 @@ Android单位
 
 
 
+#### AndroidManifest.xml
+
 `AndroidManifest.xml`
 
 ```
@@ -87,6 +90,10 @@ Android单位
 	<uses_sdk
 		minSdkVersion:
 		targetSdkVersion:
+	>
+	<uses-permission
+		name:
+			CALL_PHONE:
 	>
 	<applicatioin
 		allowBackup:
@@ -108,6 +115,7 @@ Android单位
 						LAUNCH:
 						DEFAULT:
 				>
+				<data>
 ```
 
 
@@ -123,6 +131,7 @@ Android单位
 	<fragment
 		id:
 		name: 全类名
+		app:navGraph:
 	>
 ```
 
@@ -207,12 +216,48 @@ Intent:
     FLAG_ACTIVITY_NEW_TASK:
     createChooser():
 	---
-
+	addCategory():
 	putExtra():
 	setAction():
+	setData():
 	setFlags():
 	setType():
 	
+```
+
+
+
+<img src="Android基础.assets/image-20230523210027518.png" alt="image-20230523210027518" style="zoom:67%;" />
+
+
+
+##### ComponentName
+
+```
+ComponentName:
+	
+```
+
+
+
+##### Action
+
+```
+Action:
+	
+```
+
+
+
+<img src="Android基础.assets/image-20230523211841182.png" alt="image-20230523211841182" style="zoom:67%;" />
+
+
+
+action常量
+
+```
+常量:
+	android.media.action.IMAGE_CAPTURE:
 ```
 
 
@@ -221,7 +266,68 @@ Intent:
 
 
 
+##### Data
+
+```
+Data:
+	
+```
+
+
+
+data uri
+
+```
+uri:
+	content://contacts/people/
+	geo:0,0
+	http://xxx.com
+	tel:17729014809
+	tel://17729014809
+```
+
+
+
+##### Category
+
+```
+Category:
+	
+```
+
+
+
+Category常量
+
+```
+常量:
+	android.intent.category.APP_CALENDAR:
+```
+
+
+
+##### Extras
+
+
+
+##### Flags
+
+
+
+
+
 #### Fragment
+
+```
+Fragment:
+	onCreate():
+	---
+	
+```
+
+
+
+
 
 ##### 生命周期
 
@@ -247,7 +353,17 @@ FragmentManager、FragmentTrasaction、
 
 ### View
 
+#### AppBarLayout
+
+
+
 #### ConstraintLayout
+
+
+
+#### DrawerLayout
+
+
 
 
 
@@ -342,6 +458,8 @@ EditText:
 ```
 
 
+
+#### FloatingActionButton
 
 
 
@@ -545,6 +663,7 @@ ToggleButton:
 			ifRoom:
 			withText:
 			collapseActionView:
+		app:actionProviderClass:
 	>
 		<menu> // 嵌套menu
 ```
@@ -620,9 +739,101 @@ ActionView:
 
 ```
 ActionProvider:
+	onCreateActionView():
+	onPerformDefaultAction():
+	---
+	
+	
+ShareActionProvider:
+	---
+	setShareIntent():
 ```
 
 
+
+#### TabLayout
+
+```
+TabLayout:
+	---
+	setupWithViewPager():
+```
+
+
+
+##### SectionsPagerAdapter
+
+```
+SectionsPagerAdapter:
+```
+
+
+
+
+
+##### ViewPager
+
+```
+ViewPager:
+	---
+	setAdapter():
+```
+
+
+
+#### BottomNavigationView
+
+```
+BottomNavigationView:
+	
+```
+
+
+
+##### NavigationView
+
+```
+NavigationView:
+	app:headerLayout:
+	app:menu:
+```
+
+
+
+
+
+##### Navigation
+
+```
+Navigation:
+	
+```
+
+
+
+
+
+##### NavController
+
+```
+NavController:
+```
+
+
+
+##### NavigationUI
+
+```
+NavigationUI:
+```
+
+
+
+##### AppBarConfiguration
+
+```
+AppBarConfiguration:
+```
 
 
 
@@ -674,6 +885,17 @@ ActionProvider:
 
 
 
+#### \<navigation>
+
+```
+<navigation>
+	<fragment
+		
+	>
+```
+
+
+
 
 
 #### \<resources>
@@ -698,6 +920,17 @@ ActionProvider:
 ```
 
 
+
+#### \<vector>
+
+```
+<vector
+
+>
+	<path
+		
+	>
+```
 
 
 
@@ -852,7 +1085,9 @@ androidx:
 			postValue():
 		MutableLiveData<T>:
 		ViewModel
-
+	viewpager:
+		widget:
+			ViewPager:
 
 
 AppCompatActivity:
@@ -861,12 +1096,14 @@ AppCompatActivity:
 	getLayoutInflater():
 	getMenuInflater():
 	getResources():
+	getSupportFragmentManager():
 	onAttachFragment():
 	onContextItemSelected():
 	onCreate():
 	onCreateContextMenu():
 	onCreateOptionsMenu():
 	onOptionsItemSelected():
+	onSupportNavigateUp():
 	registerForContextMenu():
 	setContentView():
 	setSupportActionBar():
