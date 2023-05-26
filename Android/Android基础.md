@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 安卓基础 P52|Jetpack P10
+> Point: 安卓基础 P61|Jetpack P10
 
 
 
@@ -95,6 +95,11 @@ Android单位
 		name:
 			CALL_PHONE:
 	>
+	<receiver
+		name:
+	>
+		<intent-filter>
+			<action>
 	<applicatioin
 		allowBackup:
 		icon:
@@ -115,7 +120,10 @@ Android单位
 						LAUNCH:
 						DEFAULT:
 				>
-				<data>
+				<data
+					mimeType:
+					schema:
+				>
 ```
 
 
@@ -178,6 +186,24 @@ Android单位
 
 
 
+### 进程
+
+- 前台进程
+- 可见进程
+- 服务进程
+- 后台进程
+- 空进程
+
+<img src="Android基础.assets/image-20230526212325916.png" alt="image-20230526212325916" style="zoom:67%;" />
+
+<img src="Android基础.assets/image-20230526212352941.png" alt="image-20230526212352941" style="zoom:67%;" />
+
+<img src="Android基础.assets/image-20230526212522776.png" alt="image-20230526212522776" style="zoom:67%;" />
+
+<img src="Android基础.assets/image-20230526212539286.png" alt="image-20230526212539286" style="zoom:67%;" />
+
+
+
 
 
 
@@ -228,6 +254,23 @@ Intent:
 
 
 <img src="Android基础.assets/image-20230523210027518.png" alt="image-20230523210027518" style="zoom:67%;" />
+
+
+
+Intent解析
+
+<img src="Android基础.assets/image-20230526184908883.png" alt="image-20230526184908883" style="zoom:67%;" />
+
+
+
+##### Bundle
+
+```
+Bundle:
+	
+```
+
+
 
 
 
@@ -634,7 +677,141 @@ ToggleButton:
 
 ### Content
 
+#### Context
 
+```
+Context:
+	
+```
+
+
+
+
+
+#### Broadcast
+
+ 系统广播
+
+<img src="Android基础.assets/image-20230526203325112.png" alt="image-20230526203325112" style="zoom:67%;" />
+
+
+
+##### BroadcastReceiver
+
+```
+BroadcastReceiver:
+	onReceive():
+```
+
+
+
+#### Notification
+
+```
+Notification:
+	Builder:
+		---
+			build():
+			setAutoCancel():
+			setContentIntent():
+			setContentText():
+			setContentTitle():
+			setLargeIcon():
+			setSmallIcon():
+			setStyle():
+			setWhen():
+```
+
+
+
+<img src="Android基础.assets/image-20230526204228386.png" alt="image-20230526204228386" style="zoom:67%;" />
+
+
+
+##### NotificationManager
+
+```
+NotificationManager:
+	---
+	createNotificationChannel():
+	notify():
+```
+
+
+
+##### NotificationChannel
+
+```
+NotificationChannel:
+	
+```
+
+
+
+
+
+#### Handler
+
+```
+Handler:
+	handleMessage():
+	---
+	post():
+	postAtTime():
+	postDelayed():
+	removeCallbacks():
+	sendMessage():
+```
+
+
+
+常配合Thread使用
+
+
+
+
+
+##### Message
+
+```
+Message:
+	what:
+	---
+	
+```
+
+
+
+
+
+##### Looper
+
+```
+Looper:
+	
+```
+
+
+
+
+
+
+
+#### AsyncTask
+
+```
+AsyncTask:
+	
+```
+
+
+
+#### Service
+
+```
+Service:
+	
+```
 
 
 
@@ -936,7 +1113,7 @@ AppBarConfiguration:
 
 
 
-### JetPack
+## JetPack
 
 
 
@@ -944,13 +1121,13 @@ Google推出的一套系列组件集
 
 
 
-#### AppCompat
+### AppCompat
 
 
 
-#### 数据绑定
+### 数据绑定
 
-##### DataBinding
+#### DataBinding
 
 ```
 <layout>
@@ -987,7 +1164,7 @@ class MainActivity:
 
 
 
-##### BindingAdapter
+#### BindingAdapter
 
 @{}的代码扩展使用，自动被扫描进value对应的属性中
 
@@ -1004,7 +1181,7 @@ class XxxAdapter:
 
 
 
-#### Lifecycles
+### Lifecycles
 
 观察Activity、Fragment生命周期的变化，执行观察者的代码、销毁观察者对象
 
@@ -1012,7 +1189,7 @@ class XxxAdapter:
 
 
 
-#### ViewModel
+### ViewModel
 
 存储LiveData数据，和修改LiveData的方法，ViewModelStore
 
@@ -1020,25 +1197,25 @@ class XxxAdapter:
 
 
 
-#### LiveData
+### LiveData
 
 感应变化的数据，值变化能触发界面刷新
 
 
 
-#### Room
+### Room
 
 
 
-#### Paging
+### Paging
 
 
 
-#### Navigation
+### Navigation
 
 
 
-#### WorkManager
+### WorkManager
 
 
 
@@ -1092,11 +1269,15 @@ androidx:
 
 AppCompatActivity:
 	findViewById():
+	finish():
 	getApplicationContext():
+	getIntent():
 	getLayoutInflater():
 	getMenuInflater():
 	getResources():
 	getSupportFragmentManager():
+	getSystemService():
+	onActivityResult():
 	onAttachFragment():
 	onContextItemSelected():
 	onCreate():
@@ -1105,10 +1286,15 @@ AppCompatActivity:
 	onOptionsItemSelected():
 	onSupportNavigateUp():
 	registerForContextMenu():
+	registerReceiver():
+	sendBroadcast():
 	setContentView():
+	setResult():
 	setSupportActionBar():
 	startActionMode():
 	startActivity():
+	startActivityForResult():
+	unregisterReceiver():
 Bundle:
 Button:
 	id:
