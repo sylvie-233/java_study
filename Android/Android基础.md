@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 安卓基础 P61|Jetpack P10
+> Point: 安卓基础 P75|Jetpack P10
 
 
 
@@ -94,6 +94,7 @@ Android单位
 	<uses-permission
 		name:
 			CALL_PHONE:
+			WRITE_EXTERNAL_STORAGE:
 	>
 	<receiver
 		name:
@@ -108,6 +109,12 @@ Android单位
 		supportsRtl:
 		theme: @style/xxx应用样式
 	>
+		<service
+            name:
+        >
+            <intent-filter>
+                <action>
+                <category>
 		<activity
 			name
 		>
@@ -681,6 +688,7 @@ ToggleButton:
 
 ```
 Context:
+	---
 	
 ```
 
@@ -775,9 +783,10 @@ Handler:
 
 ```
 Message:
+	replyTo:
 	what:
 	---
-	
+	obtain():
 ```
 
 
@@ -801,8 +810,27 @@ Looper:
 
 ```
 AsyncTask:
-	
+	onPreExecute():
+	doInBackground():
+	onPostExecute():
+	onProgressUpdate():
+	---
+	publishProgress():
 ```
+
+
+
+##### Params	
+
+##### Progress	
+
+##### Result
+
+
+
+
+
+
 
 
 
@@ -810,8 +838,224 @@ AsyncTask:
 
 ```
 Service:
+	onCreate():
+	onStartCommand():
+	onDestory():
+	onBind():
+	onUnbind():
+	onRebind():
+	---
+```
+
+
+
+<img src="Android基础.assets/image-20230528194012845.png" alt="image-20230528194012845" style="zoom:67%;" />
+
+##### IntentService
+
+```
+IntentService:
+	onHandleIntent():
+	onDestory():
+	---
+```
+
+
+
+##### ServiceConnection
+
+```
+ServiceConnection:
+	onServiceConnected():
+	onServiceDisconnected():
+	---
 	
 ```
+
+<img src="Android基础.assets/image-20230528204837631.png" alt="image-20230528204837631" style="zoom:67%;" />
+
+
+
+
+
+
+
+##### Binder
+
+##### IBinder
+
+```
+IBinder:
+	
+```
+
+
+
+
+
+##### Messenger
+
+```
+Messenger:
+	---
+	getBinder():
+	send():
+```
+
+
+
+
+
+#### MediaPlayer
+
+```
+MediaPlayer:
+	create():
+	---
+	release():
+	start():
+```
+
+
+
+
+
+#### SharedPreferences
+
+```
+SharedPreferences:
+	Editor:
+		---
+		putString():
+		commit():
+	---
+	edit():
+	getString():
+```
+
+<img src="Android基础.assets/image-20230528213451402.png" alt="image-20230528213451402" style="zoom:67%;" />
+
+<img src="Android基础.assets/image-20230528213542825.png" alt="image-20230528213542825" style="zoom:67%;" />![image-20230528213615904](Android基础.assets/image-20230528213615904.png)![image-20230528213619783](Android基础.assets/image-20230528213619783.png)
+
+<img src="Android基础.assets/image-20230528213624129.png" alt="image-20230528213624129" style="zoom:67%;" />
+
+
+
+##### PreferenceScreen
+
+```
+PreferenceScreen:
+	---
+	getSharedPreferences():
+	registerSharedPreferenceChangeListener():
+	unregisterSharedPreferenceChangeListener()
+```
+
+
+
+`preferences.xml`
+
+```
+<PreferenceScreen>
+	<PreferenceCategory
+		key:
+		title:
+		app:summary:
+	>
+		<CheckBoxPreference
+			key:
+            title:
+            summary:
+		>
+		<EditTextPreference
+			key:
+			title:
+			summary:
+		>
+		<ListPreference
+			key:
+			title:
+			summary:
+			entries:
+			entryValues:
+			dependency:
+		>
+```
+
+<img src="Android基础.assets/image-20230528214945885.png" alt="image-20230528214945885" style="zoom:67%;" />
+
+
+
+**PreferenceFragmentCompat**
+
+```
+PreferenceFragmentCompat:
+	onCreatePreferences():
+	---
+	setPreferencesFromResource():
+	findPreference(): 
+	
+OnHaredPreferenceChangeListener:
+	onSharedPreferenceChanged():
+	---
+```
+
+
+
+##### Preference
+
+```
+Preference:
+	---
+	setSummary():
+```
+
+
+
+
+
+
+
+
+
+#### 内部存储器
+
+<img src="Android基础.assets/image-20230528220900529.png" alt="image-20230528220900529" style="zoom:67%;" />
+
+
+
+
+
+
+
+#### 外部存储
+
+```
+:
+	DIRECTORY_ALARMS
+    DIRECTORY_AUDIOBOOKS
+    DIRECTORY_DCIM
+    DIRECTORY_DOCUMENTS
+    DIRECTORY_DOWNLOADS
+    DIRECTORY_MOVIES
+    DIRECTORY_MUSIC
+    DIRECTORY_NOTIFICATIONS
+    DIRECTORY_PICTURES
+    DIRECTORY_PODCASTS
+    DIRECTORY_RECORDINGS
+    DIRECTORY_RINGTONES
+    DIRECTORY_SCREENSHOTS
+```
+
+
+
+<img src="Android基础.assets/image-20230528223253130.png" alt="image-20230528223253130" style="zoom:67%;" />
+
+
+
+
+
+
 
 
 
@@ -1080,6 +1324,12 @@ AppBarConfiguration:
 ```
 <resources>
 	<string>
+	<string-array
+		name:
+	>
+		<item
+			name:
+		>
 ```
 
 
@@ -1268,13 +1518,22 @@ androidx:
 
 
 AppCompatActivity:
+	bindService():
 	findViewById():
 	finish():
 	getApplicationContext():
+	getExternalCacheDir():
+	getExternalFilesDir():
+	getExternalCacheDirs():
+	getExternalFileDirs():
+	getExternalMediaDirs():
 	getIntent():
 	getLayoutInflater():
 	getMenuInflater():
+	getPreferenceManager():
+	getPreferenceScreen():
 	getResources():
+	getSharedPreferences():
 	getSupportFragmentManager():
 	getSystemService():
 	onActivityResult():
@@ -1285,6 +1544,8 @@ AppCompatActivity:
 	onCreateOptionsMenu():
 	onOptionsItemSelected():
 	onSupportNavigateUp():
+	openFileInput():
+	openFileOutput():
 	registerForContextMenu():
 	registerReceiver():
 	sendBroadcast():
@@ -1294,6 +1555,8 @@ AppCompatActivity:
 	startActionMode():
 	startActivity():
 	startActivityForResult():
+	startService():
+	unbindService():
 	unregisterReceiver():
 Bundle:
 Button:
