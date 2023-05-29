@@ -26,10 +26,12 @@
 
 ```
 sqlite3:
+	.databse:
 	.exit: 退出
 	.help:
 	.open: 打开数据库文件
 	.schema: 查看表结构（默认显示所有表结构）
+	.tables:
 ```
 
 

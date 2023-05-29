@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 安卓基础 P75|Jetpack P10
+> Point: 安卓基础 P82|Jetpack P10
 
 
 
@@ -188,6 +188,18 @@ Android单位
 			@color/xxx
 			@style/xxx
 ```
+
+
+
+<img src="Android基础.assets/image-20230529204609668.png" alt="image-20230529204609668" style="zoom:67%;" />
+
+
+
+
+
+
+
+
 
 
 
@@ -1053,11 +1065,131 @@ Preference:
 
 
 
+#### SQLite
+
+##### SQLiteOpenHelper
+
+```
+SQLiteOpenHelper:
+	OnCreate():
+	OnUpgrade():
+	---
+	getWritableDatabase():
+```
+
+
+
+##### SQLiteDatabase
+
+```
+SQLiteDatabase:
+	---
+	delete():
+	execSQL():
+	isReadOnly():
+	rawQuery():
+	update():
+```
+
+
+
+##### Cursor
+
+```
+Cursor:
+	---
+	getColumnIndex():
+	getString():
+	isAfterLast():
+	moveToFirst():
+	moveToNext():
+```
+
+
+
+##### ContentValues
+
+```
+ContentValues:
+	
+```
 
 
 
 
 
+#### Canvas
+
+```
+Canvas:
+	---
+	drawCircle():
+	drawColor():
+	drawPaht():
+	drawRect():
+```
+
+
+
+##### Path
+
+```
+Path:
+	---
+	close():
+	lineTo():
+	moveTo():
+```
+
+
+
+##### Paint
+
+```
+Paint:
+	---
+	setColor():
+	setStrokeWidth()):
+	setStyle():
+	setAntiAlias():
+```
+
+​	
+
+##### AttributeSet
+
+```
+AttributeSet:
+	
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 
 
@@ -1619,6 +1751,9 @@ TableLayout:
 TextView:
 	
 View:
+	onDraw():
+	---
+	invalidate():
 ViewGroup:
 ```
 
