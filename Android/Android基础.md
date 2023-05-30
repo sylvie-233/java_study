@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 安卓基础 P82|Jetpack P10
+> Point: 安卓基础 P91|Jetpack P10
 
 
 
@@ -94,6 +94,8 @@ Android单位
 	<uses-permission
 		name:
 			CALL_PHONE:
+			CAMERA:
+			RECORD_AUDIO:
 			WRITE_EXTERNAL_STORAGE:
 	>
 	<receiver
@@ -814,6 +816,13 @@ Looper:
 
 
 
+##### HandlerThread
+
+```
+HandlerThread:
+	
+```
+
 
 
 
@@ -924,9 +933,230 @@ Messenger:
 MediaPlayer:
 	create():
 	---
+	isPlayint():
+	pause():
+	prepare():
 	release():
+	reset():
+	setAudioStreamType():
+	setDataSource():
+	setDisplay():
 	start():
 ```
+
+
+
+<img src="Android基础.assets/image-20230530185838661.png" alt="image-20230530185838661" style="zoom:67%;" />
+
+
+
+
+
+
+
+##### MediaRecorder
+
+```
+MediaRecorder:
+	---
+	prepare():
+	release():
+	reset():
+	setAudioEncoder():
+	setAudioSource():
+	setOutputFilte():
+	setOutputFormat():
+	start():
+	stop():
+```
+
+
+
+##### MediaController
+
+```
+MediaController:
+	---
+```
+
+
+
+
+
+##### SurfaceView
+
+```
+SurfaceView:
+	
+	
+	
+SurfaceHolder:
+	
+```
+
+
+
+##### VideoView
+
+```
+VideoView:
+	---
+	setMediaController():
+	setVideoPath():
+	start():
+```
+
+
+
+##### TextureView
+
+```
+TextureView:
+	---
+	setSurfaceTextureListener():
+		onSurfaceTextureAvailable():
+		onSurfaceTextureSizeChanged():
+		onSUrfaceTextureDestroyed():
+		onSurfaceTextureUpdated():
+```
+
+
+
+##### SurfaceTexture
+
+```
+SurfaceTexture:
+	
+```
+
+
+
+
+
+##### Ringtone
+
+```
+Ringtone:
+	
+```
+
+
+
+##### RingtoneManager
+
+```
+RingtoneManager:
+	
+```
+
+
+
+
+
+##### AudioManager
+
+```
+AudioManager:
+	
+```
+
+
+
+##### AudioAttributes
+
+```
+AudioAttributes:
+	Builder():
+	---
+	
+```
+
+
+
+##### JetPlayer
+
+```
+JetPlayer:
+	
+```
+
+
+
+##### SoundPool
+
+```
+SoundPool:
+	
+```
+
+
+
+##### Camera2
+
+![image-20230530210200629](Android基础.assets/image-20230530210200629.png)
+
+![image-20230530210235035](Android基础.assets/image-20230530210235035.png)
+
+
+
+##### CameraManager
+
+```
+CameraManager:
+	---
+	getCameraIdList():
+	getCameraCharacteristics():
+	openCamera():
+	
+CameraDevice:
+	StateCallback:
+		onOpened():
+		onDisconnected():
+		onError():
+    ---
+    close():
+    createCaptureRequest():
+    createCaptureSession():
+	
+CaptureRequest:
+	Builder:
+	---
+	
+	
+CaptureSession:
+	StateCallback:
+		onConfigured():
+		onConfigureFailed():
+    ---
+    setRepeatingRequest():
+	
+Surface:
+	---
+	
+CameraCharacteristics:
+	
+StreamConfigurationMap:
+	---
+	getOutputSizes():
+	
+Size:
+	---
+	
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1651,6 +1881,7 @@ androidx:
 
 AppCompatActivity:
 	bindService():
+	checkSelfPermission():
 	findViewById():
 	finish():
 	getApplicationContext():
@@ -1675,11 +1906,13 @@ AppCompatActivity:
 	onCreateContextMenu():
 	onCreateOptionsMenu():
 	onOptionsItemSelected():
+	onRequestPermissionsResult():
 	onSupportNavigateUp():
 	openFileInput():
 	openFileOutput():
 	registerForContextMenu():
 	registerReceiver():
+	requestPermissions():
 	sendBroadcast():
 	setContentView():
 	setResult():
