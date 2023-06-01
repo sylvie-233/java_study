@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 安卓基础 P91|Jetpack P10
+> Point: Jetpack P10
 
 
 
@@ -96,13 +96,10 @@ Android单位
 			CALL_PHONE:
 			CAMERA:
 			RECORD_AUDIO:
+			WRITE_CONTACTS:
 			WRITE_EXTERNAL_STORAGE:
 	>
-	<receiver
-		name:
-	>
-		<intent-filter>
-			<action>
+	
 	<applicatioin
 		allowBackup:
 		icon:
@@ -117,6 +114,15 @@ Android单位
             <intent-filter>
                 <action>
                 <category>
+        <receiver
+            name:
+        >
+            <intent-filter>
+                <action>
+        <provider
+        	authorities:
+        	name:
+        >
 		<activity
 			name
 		>
@@ -827,6 +833,74 @@ HandlerThread:
 
 
 
+#### ContentProvider
+
+```
+ContentProvider:
+	onCreate():
+	getType():
+	query():
+	insert():
+	delete():
+	update():
+	---
+```
+
+![image-20230601184522337](Android基础.assets/image-20230601184522337.png)
+
+![image-20230601184608312](Android基础.assets/image-20230601184608312.png)
+
+
+
+![image-20230601184620059](Android基础.assets/image-20230601184620059.png)
+
+
+
+##### ContentResolve
+
+```---
+ContentResolve:
+	---
+	delete():
+	insert():
+	query():
+```
+
+
+
+##### ContentValues
+
+```
+ContentValues:
+	
+```
+
+
+
+##### ContentUris
+
+```
+ContentUris:
+	
+```
+
+
+
+##### UriMatcher
+
+```
+UriMatcher:
+	
+```
+
+
+
+
+
+
+
+
+
 #### AsyncTask
 
 ```
@@ -1028,6 +1102,20 @@ TextureView:
 SurfaceTexture:
 	
 ```
+
+
+
+##### ImageReader
+
+```
+ImageReader:
+	---
+	acquireNextImage():
+	setOnImageAvailableListener():
+	
+```
+
+
 
 
 
