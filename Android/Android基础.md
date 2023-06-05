@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: Jetpack P10
+> Point: 
 
 
 
@@ -1813,6 +1813,22 @@ AppBarConfiguration:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## JetPack
 
 
@@ -1883,6 +1899,26 @@ class XxxAdapter:
 
 ### Lifecycles
 
+```
+Lifecycle:
+	---
+	addObserver():
+
+LifecycleOwner:
+	---
+
+LifecycleObserver:
+	onCreate():
+	onStart():
+	onResume():
+	onPause():
+	onStop():
+	onDestroy():
+	---
+```
+
+
+
 观察Activity、Fragment生命周期的变化，执行观察者的代码、销毁观察者对象
 
 
@@ -1890,6 +1926,18 @@ class XxxAdapter:
 
 
 ### ViewModel
+
+```
+ViewModel:
+	---
+
+ViewModelStore:
+
+
+ViewModelStoreOwner:
+```
+
+
 
 存储LiveData数据，和修改LiveData的方法，ViewModelStore
 
@@ -1899,11 +1947,58 @@ class XxxAdapter:
 
 ### LiveData
 
+```
+LiveData:
+	---
+	observe():
+		Observer:
+			onchanged():
+		---
+	
+MutableLiveData:
+	---
+	postValue():
+	setValue():
+```
+
+
+
 感应变化的数据，值变化能触发界面刷新
 
 
 
 ### Room
+
+```
+Room:
+	databaseBuilder():
+	---
+
+
+注解:
+	@ColumnInfo:
+		name:
+	@Entiry:
+	@PrimaryKey:
+		autoGenerate:
+	---
+	@Dao:
+	@Delete:
+	@Insert:
+	@Query():
+	@Update:
+	---
+	@Database:
+		entities:
+		version:
+		exportSchema:
+```
+
+
+
+SQLite数据库抽象
+
+
 
 
 
