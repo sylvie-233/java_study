@@ -4,7 +4,7 @@
 >
 > Date: 23/6/1
 >
-> Point: Compose教程P3
+> Point: 
 
 [TOC]
 
@@ -179,6 +179,7 @@ LifecycleObserver:
 ```
 ComponentActivity:
 	onCreate():
+	onBackPressed():
 	---
 	setContent():
 	
@@ -195,6 +196,8 @@ ComponentActivity:
 
 @DrawableRes:
 
+@OptIn:
+
 @Preview:
 ```
 
@@ -206,9 +209,16 @@ ComponentActivity:
 
 ```
 内置组件:
+	Box:
 	Column:
+	Divider:
 	Icon:
+	Image:
+	LazyColumn: 列表渲染
+		items():
+		itemsIndexed():
 	Row:
+	Spacer:
 	Text:
 ```
 
@@ -226,12 +236,115 @@ ComponentActivity:
 	Color:
 		Black:
 		Green:
-	CompositionLocal:
-	Modifier:
-		background():
-		padding():
-		size():
-		weight():
+	Offset:
+```
+
+
+
+### Modifier
+
+```
+Modifier:
+	align():
+    background():
+    clickable {}:
+    clip():
+    drawWithContent {}:
+    	drawContent():
+    	drawCircle():
+    fillMaxSize():
+    fillMaxWidth():
+    graphicsLayer():
+    	rotationZ:
+    	transformOrigin:
+    		TransformOrigin():
+    layout {}
+    	measurable:
+    		measure():
+    			placeable:
+    				width:
+    				height:
+    				placeRelative():
+    	layout():
+    offset():
+    padding():
+    size():
+    weight():
+```
+
+
+
+### Animate
+
+```
+animateColorAsState():
+animateFloatAsState():
+	TweenSpec():
+	
+targetColors:
+	background:
+	bottomBar:
+	icon:
+	listItem:
+```
+
+
+
+#### Animatable
+
+```
+Animatable:
+	---
+	animateTo():
+		animationSpec:
+			spring():
+		initialVelocity:
+	
+	
+LaunchedEffect:
+	 key1:
+	 ---
+```
+
+
+
+
+
+### ViewModel
+
+```
+viewModel():
+ViewModel:
+	
+```
+
+
+
+
+
+#### mutableStateOf
+
+```
+mutableStateOf:
+	
+```
+
+
+
+#### remember
+
+```
+remember:
+	
+```
+
+
+
+#### CompositionLocal
+
+```
+CompositionLocal:
+	
 ```
 
 
@@ -252,6 +365,15 @@ android:
 		ViewGroup:
 	
 androidx:
+	compose:
+		foundation:
+			layout:
+				Box:
+		
+		runtime:
+			Composable:
+		ui:
+			Modifier:
 	databinding:
 		BaseObservable:
 		Bindable:
@@ -274,6 +396,13 @@ androidx:
 		Observer:
 			onChanged():
 		ViewModeL:
+		
+com.google:
+	accompanist:
+		pager:
+			ExperimentalPagerApi:
+			HorizontalPager:
+
 ```
 
 
