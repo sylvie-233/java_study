@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point: 
+> Point:  P10
 
 
 
@@ -124,7 +124,9 @@ Android单位
         	name:
         >
 		<activity
-			name
+			name:
+			screenOrientation:
+				portrait:
 		>
 			<intent-filter>
 				<action
@@ -231,6 +233,113 @@ Android单位
 
 
 
+### SDK
+
+```
+安装目录:
+	/.temp:
+	/build-tools:
+	/emulator:
+	/extras:
+	/fonts:
+	/lecenses:
+	/patcher:
+	/platforms:
+	/platform-tools:
+	/skins:
+	/sources:
+	/system-iamges:
+	/tools:
+	.knownPackages:
+```
+
+
+
+
+
+
+
+
+
+### adb
+
+```
+adb:
+	-d:
+	-e:
+	-s:
+	connect:
+	devices:
+	get-state:
+	install:
+		-r:
+	kill-server:
+	logcat: (V|D|I|W|E|F|S)
+		-c;
+		-f:
+		-v:
+			color:
+			time:
+	pull:
+	push:
+	shell:
+		am: ActivityManager
+			start:
+				-n:
+		cat:
+			
+		cmd:
+		date:
+		dumpsys:
+			activitys:
+			battery:
+			cpuinfo:
+			meminfo:
+			windown
+		input:
+			keyevent:
+				3: Home
+				4: 返回键
+				24: 音量+
+				25:	音量-+
+			press:
+			roll:
+			swipe:
+			tap:
+			text:
+		ls:
+		monkey: 性能测试工具
+			--bugreport:
+			--ignore-crashes:
+			-p: 指定包名
+			--pct-touch:
+			-s:
+			--throttle:
+			-v:
+		pm: PackageManager:
+			clear:
+			list:
+				packages:
+					-3:
+					-s:
+		top:
+			
+	uninstall:
+		-k:
+```
+
+
+
+#### emulator
+
+```
+
+```
+
+
+
+
+
 
 
 
@@ -238,6 +347,19 @@ Android单位
 ## 核心内容
 
 ### Activity
+
+```
+AppCompatActivity:
+	onCreate():
+	onSaveInstanceState():
+	---
+	findViewById():
+	finish(): 结束Activity
+```
+
+
+
+
 
 #### 生命周期
 
@@ -254,6 +376,14 @@ Android单位
 2个Activity的生命周期
 
 <img src="Android基础.assets/image-20230515212911885.png" alt="image-20230515212911885" style="zoom:67%;" />
+
+
+
+
+
+屏幕翻转会导致activity销毁重建
+
+
 
 
 
@@ -461,6 +591,17 @@ LinearLayout:
 
 
 
+#### TabLayout
+
+```
+TabLayout:
+	
+```
+
+
+
+
+
 #### TableLayout
 
 
@@ -617,9 +758,75 @@ RadioGroup:
 
 
 
+#### RatingBar
+
+```
+RatingBar:
+	---
+	setOnRatinBarChangeListener():
+```
+
+
+
+#### RecyclerView
+
+```
+RecyclerView:
+	
+```
+
+
+
+#### ScrollView
+
+```
+ScrollView:
+	
+```
+
+
+
+
+
+#### SearchView
+
+```
+SearchView:
+	
+```
+
+
+
+
+
+#### SeekBar
+
+```
+SeekBar:
+
+	---
+	setOnSeekBarChangeListener():
+		onProgressChanged():
+        onStartTrackingTouch():
+        onStopTrackingTouch():
+```
+
+
+
 
 
 #### Spinner
+
+
+
+#### SurfaceView
+
+```
+SurfaceView：
+	
+```
+
+
 
 
 
@@ -630,6 +837,7 @@ Switch:
 	textOff:
 	textOn:
 	---
+	setOnCheckedChangeListener():
 ```
 
 
@@ -648,6 +856,17 @@ TextView:
 	setText():
 	setTextColor():
 ```
+
+
+
+#### TextureView
+
+```
+TextureView:
+	
+```
+
+
 
 
 
@@ -682,9 +901,31 @@ ToggleButton:
 
 
 
+#### VideoView
+
+```
+VideoView:
+	
+```
+
+
+
+#### ViewPager
+
+```
+ViewPager:
+	
+```
+
+
+
 
 
 #### WebView
+
+```
+WebView:
+```
 
 
 
@@ -704,6 +945,22 @@ ToggleButton:
 
 ### Content
 
+#### R
+
+```
+R:
+	drawable:
+	id:
+	layout:		
+	string:
+```
+
+
+
+
+
+
+
 #### Context
 
 ```
@@ -711,6 +968,22 @@ Context:
 	---
 	
 ```
+
+
+
+#### Localization
+
+```
+Localization:
+	---
+	
+```
+
+
+
+
+
+
 
 
 
