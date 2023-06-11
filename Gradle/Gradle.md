@@ -571,6 +571,9 @@ android {
 		versionName "1.0"
 		multiDexEnabled
 		testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+		dataBinding {
+			enabled true
+		}
 	}
 	
 	buildTypes {

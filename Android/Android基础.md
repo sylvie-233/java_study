@@ -4,7 +4,7 @@
 >
 > Date: 2023/5/8
 >
-> Point:  P10
+> Point:  P20
 
 
 
@@ -70,6 +70,7 @@ Android单位
                 /raw:
                 /values:
                     colors.xml:
+                    dimens.xml:
                     strings.xml:
                     styles.xml: 样式定义文件
                 /xml:
@@ -966,7 +967,8 @@ R:
 ```
 Context:
 	---
-	
+	getResources():
+	getSharedPreferences():
 ```
 
 
@@ -1544,6 +1546,20 @@ SharedPreferences:
 
 
 
+
+
+
+
+![image-20230611215859355](Android基础.assets/image-20230611215859355.png)
+
+
+
+
+
+
+
+
+
 ##### PreferenceScreen
 
 ```
@@ -2002,6 +2018,45 @@ AppBarConfiguration:
 
 
 
+#### Animation
+
+##### \<set>
+
+```
+<set>
+	<rotate
+		fromDegrees:
+		toDegrees:
+		pivotx:
+		pivotY:
+		duration:
+	>
+	<scale
+		fromXScale:
+		toXScale:
+		fromYScale:
+		toYScale:
+		pivotX:
+		pivotY:
+		duration:
+	>
+	<translate
+		fromXDelta:
+		toXDelta:
+		duration:
+	>
+```
+
+
+
+
+
+
+
+
+
+
+
 #### \<layer-list>
 
 ```
@@ -2046,6 +2101,9 @@ AppBarConfiguration:
 
 ```
 <resources>
+	<dimen
+		name: "属性名"
+	>
 	<string>
 	<string-array
 		name:
@@ -2116,6 +2174,18 @@ Google推出的一套系列组件集
 
 ### 数据绑定
 
+![image-20230611190400188](Android基础.assets/image-20230611190400188.png)
+
+
+
+
+
+
+
+
+
+
+
 #### DataBinding
 
 ```
@@ -2125,6 +2195,14 @@ Google推出的一套系列组件集
 			name: _vm（通过@{_vm.xxx}使用VM属性）
 			type: VM全类名
 		>
+		
+	
+    
+		
+		
+---
+ActivityMainBinding: （自动生成）
+	
 ```
 
 
@@ -2202,19 +2280,36 @@ LifecycleObserver:
 
 ```
 ViewModel:
+	SavedStateHandle:
+		contains():
+		getLiveData():
+		set():
 	---
 
 ViewModelStore:
 
 
 ViewModelStoreOwner:
+
+
+
+
+AndroidViewModel:
+	---
+	
 ```
+
+![image-20230611202320229](Android基础.assets/image-20230611202320229.png)
+
+
 
 
 
 存储LiveData数据，和修改LiveData的方法，ViewModelStore
 
+![image-20230611185323646](Android基础.assets/image-20230611185323646.png)
 
+![image-20230611185407430](Android基础.assets/image-20230611185407430.png)
 
 
 
@@ -2280,6 +2375,97 @@ SQLite数据库抽象
 
 
 ### Navigation
+
+```
+Navigation:
+	createNavigateOnClickListener():
+	findNavController():
+```
+
+
+
+![image-20230611221910702](Android基础.assets/image-20230611221910702.png)
+
+
+
+Navigation常与fragment连用
+
+![image-20230611230403339](Android基础.assets/image-20230611230403339.png)
+
+
+
+
+
+
+
+#### navigation
+
+##### nav_graph.xml
+
+```
+
+```
+
+
+
+##### GRAPH
+
+
+
+##### NavHostFragment
+
+```
+NavHostFragment:
+	
+```
+
+
+
+NavHostFragment为Navigation入口容器
+
+`NavHostFrament(activity_main.xml中的fragment)`->`nav_graph.xml(定义fragment跳转关系)`->`Fragment视图定义`->`xxxfragment.xml`
+
+
+
+
+
+
+
+
+
+
+
+#### NavController
+
+```
+NavController:
+	---
+	navigate():
+	navigateUp():
+```
+
+![image-20230611230151363](Android基础.assets/image-20230611230151363.png)
+
+
+
+
+
+
+
+
+
+#### NavigationUI
+
+```
+NavigationUI:
+	setupActionBarWithNavController():
+		onSupportNavigateUp():
+	---
+```
+
+
+
+
 
 
 
