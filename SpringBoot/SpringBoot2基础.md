@@ -1,20 +1,16 @@
-# SpringBoot2基础
+# SpringBoot基础
 
-Sylvie233的SpringBoot2学习~~~
+Sylvie233的SpringBoot学习~~~
 
 > Author: Sylvie233
 >
 > Date: 2022/10/17
-
-
-
->Update: 2022/10/21
 >
->Point: 
+> Point: 
 
 [TOC]
 
-## SpringBoot介绍
+## 基础介绍
 
 Spring容器（IOC容器）
 
@@ -54,7 +50,7 @@ application.properties/application.yml
 
 
 
-## SpringBoot基础
+## 核心内容
 
 ### JavaConfig
 
@@ -368,7 +364,7 @@ filter.setEncoding("utf-8")
 
 
 
-## SpringBoot常用第三方库
+## 第三方库集成
 
 ### Thymeleaf模板集成
 
@@ -973,7 +969,14 @@ consumer消费者
 
 
 
-## SpringBoot常用API
+## API
+
+```
+:
+	
+```
+
+
 
 ### 1.SpringApplication
 
@@ -1089,7 +1092,7 @@ session.geteId()
 
 
 
-## SpringBoot常用注解
+## 常用注解
 
 ### 1.@Configuration
 
@@ -1409,7 +1412,7 @@ Configuration元数据
 
 
 
-## SpringBoot常用配置
+## 常用配置
 
 application.properties
 
@@ -1486,7 +1489,7 @@ dubbo:
 
 
 
-## SpringBoot项目部署
+## 项目部署
 
 ### jar包生成
 
