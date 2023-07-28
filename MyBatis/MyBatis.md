@@ -1,6 +1,8 @@
 # MyBatis基础
 
+>Author: Sylvie233
 >
+>Date: 23/7/27
 
 [TOC]
 
@@ -26,6 +28,39 @@ DataSource、SqlSessionFactory、Mapper扫描、DataSourceTransactionManager（�
 
 
 
+### mapper.xml
+
+```
+<mapper>
+	<resultMap>
+		<result>
+		<collection>
+			<id>
+			<result>
+			<collection>
+```
+
+
+
+
+
+
+
 ### 逆向工程
 
 mybatis-generator
+
+Easy Code插件
+
+
+
+
+
+
+
+
+
+
+
+
+

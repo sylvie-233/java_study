@@ -42,6 +42,10 @@ javac:
 
 ## 核心内容
 
+### 注解
+
+
+
 ### JVM
 
 
@@ -245,13 +249,22 @@ java:
 	io:
 		Serializable:
 	lang:
+		annotation:
+			ElementType:
+			Retention:
+			RetentionPolicy:
+			Target:
 		reflect:
 			Field:
+			Proxy:
+				newProxyInstance():
 		Class:
 			forName():
 			getDeclaredConstructor():
 			newInstance():
+		Integer:
 		Object:
+		String:
         System:
             err:
             in:
@@ -355,6 +368,17 @@ java:
 			size():
 		PriorityQueue:
 	
+javax:
+	annotaion:
+		PostConstruct:
+		Resource:
+	validation:
+		constraints: 模型注解
+			NotNull:
+			Pattern:
+			Size:
+				min
+		Valid:
 
 sum:
 	misc:

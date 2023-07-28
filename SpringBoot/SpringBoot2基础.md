@@ -6,7 +6,7 @@ Sylvie233的SpringBoot学习~~~
 >
 > Date: 2022/10/17
 >
-> Point: 
+> Point:
 
 [TOC]
 
@@ -44,6 +44,20 @@ application.properties/application.yml
 
 
 
+### 自动装配
+
+starter
+
+
+
+
+
+### Yaml
+
+
+
+
+
 
 
 
@@ -52,7 +66,18 @@ application.properties/application.yml
 
 ## 核心内容
 
-### JavaConfig
+```
+org.springframework.boot:
+	autoconfigure:
+		SpringBootApplication:
+			
+	SpringApplication:
+		run():
+```
+
+
+
+
 
 Spring上下文依赖
 
@@ -119,17 +144,7 @@ ctx.getBean("方法名")
 
 
 
-### Maven配置
-
-pom.xml
-
-```
-
-```
-
-
-
-### Spring Web
+### SpringWeb
 
 依赖
 
@@ -254,29 +269,29 @@ form其它类型请求方式：
 
 
 
+#### 配置
+
+```
+
+```
+
+
+
+#### 异常处理
+
+![ac5fda601dfe48e0a7cba7635923fa9c](SpringBoot2基础.assets/ac5fda601dfe48e0a7cba7635923fa9c.png)
 
 
 
 
 
 
-### Runner接口
-
-run()方法，类似钩子函数
-
-CommandLineRunner
-
-容器已经创建好了
-
-
-
-ApplicationRunner
 
 
 
 
 
-### 拦截器
+#### 拦截器
 
 拦截Controller中的请求
 
@@ -296,7 +311,7 @@ class MyInterceptor implements HandlerInterceptor {
 
 
 
-### Servlet
+#### Servlet
 
 HttpServlet
 
@@ -312,7 +327,7 @@ public class MyServlet extends HttpServlet {
 
 
 
-### Filter
+#### Filter
 
 实现Filter接口
 
@@ -350,7 +365,7 @@ filter.setEncoding("utf-8")
 
 
 
-### 事务
+#### 事务
 
 @Transactional
 
@@ -364,9 +379,9 @@ filter.setEncoding("utf-8")
 
 
 
-## 第三方库集成
+## 第三方库
 
-### Thymeleaf模板集成
+### Thymeleaf
 
 Java模板引擎
 
@@ -676,7 +691,7 @@ th:include="~{ name }"
 
 
 
-### JSP集成
+### JSP
 
 依赖
 
