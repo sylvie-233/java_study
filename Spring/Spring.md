@@ -10,7 +10,7 @@
 >
 > ​	SSM练手小项目：P33
 >
-> ​	Spring5底层教程：P36
+> ​	Spring5底层教程：P89
 
 [TOC]
 
@@ -75,6 +75,8 @@ BeanFactory后置处理器解析注解（注入容器）：@Configuration、@Aut
 ![image-20230728185717407](Spring.assets/image-20230728185717407.png)
 
 
+
+Bean：创建、依赖注入、初始化
 
 
 
@@ -181,9 +183,95 @@ bean生命周期
 
 #### AOP
 
+Aspect（切点、通知、切面）、Advisor切面（Pointcut、advice）、Pointcut、MethodInterceptor、
+
+Aspect（多切点通知）->Advisor（单切点通知）->MethodInterceptor环绕通知调用链（MethodInvocation）
+
+切点表达式：execution、@annotation、args、逻辑表达式
+
+
+
+静态调用、动态调用
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### SpringMVC
+
+![image-20230729055625071](Spring.assets/image-20230729055625071.png)
+
+#### DispatcherServlet
+
+onRefresh()初始化：
+
+![image-20230729140624462](Spring.assets/image-20230729140624462.png)
+
+
+
+`DispatcherServlet.properties`：默认九类组件实现
+
+
+
+
+
+
+
+#### RequestMappingHandlerMapping
+
+处理请求路径映射
+
+
+
+
+
+
+
+
+
+#### RequestMappingHandlerAdapter
+
+调用控制器方法（HandlerExecutionChain）
+
+方法参数解析器、返回值处理器
+
+
+
+
+
+类型转换
+
+![image-20230729171954978](Spring.assets/image-20230729171954978.png)
+
+Binder
+
+
+
+
+
+
+
+
 
 #### web.xml
 
@@ -280,6 +368,58 @@ Tomcat的war项目启动配置文件
 
 ```
 org.springframework:
+	aop:
+		aspectj:
+			annotation:
+				AnnotationAwareAspectJAutoProxyCreator: (Bean后置处理器)
+					findEligibleAdvisors(): 查找对象可用的Advisor
+					wrapIfNecessary(): 创建代理
+			AspectJAroundAdvice:
+			AspectJExpressionPointcut:
+				matches():
+				setExpression():
+			AspectInstanceFactory:
+				
+			AspectJMethodBeforeAdvice:
+			InstantiationModelAwarePointcutAdvisor:
+			SingletonAspectInstanceFactory:
+				
+		framework:
+			adapter:
+				AfterReturningAdviceInterceptor:
+				MethodBeforeAdviceInterceptor:
+				
+			autoproxy:
+				
+			ProxyFactory:
+                addAdvisor():
+                getProxy():
+                getInterceptorsAndDynamicInterceptionAdvice():
+                setInterfaces():
+                setProxyTargetClass():
+				setTarget():
+			ReflectiveMethodInvocation:
+		interceptor:
+			ExposeInvocationInterceptor:
+				ADVISOR:
+		support:
+			AnnotationMatchingPointcut:
+			ComposablePointcut:
+			ControlFlowPointcut:
+			DefaultPointcutAdvisor:
+			ExpressionPointcut:
+			StaticMethodMatcherPointcut:
+		Advisor:
+		Pointcut:
+			getClassFilter():
+			getMethodMatcher():
+	asm:
+		AnnotationVisitor:
+		ClassWriter:
+		FieldVisitor:
+		MethodVisitor:
+		Opcodes:
+			
 	beans:
 		factory:
 			annotatin:
@@ -338,21 +478,54 @@ org.springframework:
             InitializingBean:
             	afterPropertiesSet():
             ObjectFactory:
+    	BeanWrapperImpl:
+    		setPropertyValue():
+    	DirectFieldAccessor:
+    		setPropertyValue():
+    	SimpleTypeConverter:
+    		convertIfNecessary():
 	boot:
+		autoconfigure:
+			web:
+				format:
+					WebConversionService:
+				servlet:
+					DispatcherServletRegistrationBean:
+						setLoadOnStartup():
 		context:
 			properties:
 				ConfigurationProperties:
 				ConfigurationPropertiesBindingPostProcessor:
 					register():
+		convert:
+			ApplicationConversionService:
+				
 		web:
 			servlet:
 				context:
 					AnnotaionConfigServletWebServerApplicationContext: 基于Web注解（ServletWebServerFactory、DispatcherServlet、DispatcherServletRegistraionBean（注册到Server））
+				HandlerMapping:
+					
+	cache:
+		interceptor:
+			CacheOperationSourcePointcut:
 	cglib: 父子代理
 		core:
+			Signature:
+				
 		proxy:
 			Enhancer:
 				create():
+			MethodInterceptor:
+				intercept():
+			MethodProxy:
+				create():
+				---
+				invoke():
+				invokeSuper():
+		reflect:
+			FastClass:
+				
 	context:
 		annotation:
 			AnnotationBeanNameGenerator:
@@ -414,6 +587,10 @@ org.springframework:
 			AnnotatinUtils: 注解工具类
 				findAnnotation():
 			AnnotationAwareOrderComparator:
+			MergedAnnotations:
+				from():
+				isPresent():
+			Order:
 		env:
 			EnvironmentCapable:
 		io:
@@ -435,45 +612,166 @@ org.springframework:
 					isInterface():
             MethodMetadata:
                 getAnnotationAttributes():
+        DefaultParameterNamDiscoverer:
+       	GenericTypeResolver:
+       		resolveTypeArgument():
+       		resolveTypeArguments():
+        LocalVariableTableParameterNameDiscoverer:
+        	getParameterNames():
+        MethodParameter:
+        	getMethodAnnotation():
+        	getMethodAnnotations():
+        	getParameterAnnotation():
+        	getParameterAnnotations():
+        	getParameterIndex():
+        	getParameterType():
+        	initParameterNameDiscovery(): 参数名
 	data:
 		domain:
 			Page:
 			PageRequest:
+	format:
+		annotation:
+			DateTimeFormat: 日期转换注解
+				
+		support:
+			DefaultFormattingConversionService:
+				
+			FormattingConversionService:
+				addFormatter():
+			FormattingConversionServiceFactoryBean:
+		Formatter:
+			parse():
+			print():
 	http:
+		converter:
+			json:
+				MappingJackson2HttpMessageConverter:
+					
 		ResponseEntity:
 	stereotype:
 		Component: 组件
+	transaction:
+		annotation:
+			Transactional:
+	util:
+		AnPathMatcher:
+			extractUriTemplateVariables():
 	validation:
 		annotation:
 			Validated: 字段校验注解
 		BindingResult:
 			getAllErrors():
+		BeanPropertyBindingResult:
+		BindingResult:
+		DataBinder:
+			bind():
+			initDirecFieldAccess():
+		MutablePropertyValues:
+        	add():
 	web:
 		bind:
 			annotaion: WEB注解
 				CrossOrigin: 跨域处理
 				GetMapping:
+				InitBinder: 初始化绑定器WebDataBinder
 				RequestBody:
 				ResponseBody:
 				RestController:
 				Validated:
+			support:
+				ConfigurableWebBindingInitializer:
+					setConversionService():
+				DefaultDataBinderFactory:
+				WebDataABinderFactory:
+			ServletRequestDataBinder:
+				bind():
+			ServletRequestParameterPropertyValues:
+            WebDataBinder:
+            	addCustomFormatter(): 添加自定义格式类型转换器
 		client:
 			RestTemplate:
 				getForEntiry():
+		context:
+			request:
+				NativeWebRequest:
+					getHeader():
+					getNativeResponse():
+		method:
+			annotation:
+                RequestHeaderMethodArgumentResolver: @RequestHeader解析
+				RequestHeaderMapMethodArgumentResolver:
+				RequestParamMethodArgumentResolver: @RequestParam解析
+					resolveArgument():
+					supportsParameter():
+				RequestParamMapMethodArgumentResolver:
+			support:
+				HandlerMethodArgumentResolver: 方法参数解析器
+					resolveArgument():
+					supportsParameter():
+                HandlerMethodArgumentResolverComposite:
+                	addResolvers():
+				HandlerMethodReturnValueResolver:
+					handleReturnValue():
+					supportsReturnType():
+				ModelAndViewContainer:
+					getModel():
+                	setRequestHandled():
+			HandlerMethod:
+				getMethodParameters():
 		servlet:
 			mvc:
+				method:
+					annotation:
+						PathVariableMethodArgumentResolver: @PathVariable解析
+						PathVariableMapMethodArgumentResolver:
+						RequestMappingHandlerAdapter:
+							getArgumentResolvers():
+							getReturnValueHandlers():
+							invokeHandlerMethod():
+							setCustomArgumentResolvers():
+						RequestMappingHandlerMapping:
+							getHandler():
+							getHandlerMethods():
+						RequestResponseBodyMethodProcessor:
+						ServletModelAttributeMethodProcessor:
+						ServletRequestDataBinderFactory: 参数绑定工厂
+							createBinder():
+						ServletRequestMethodArgumentResolver:
+						ServletReponseMethodArgumentResolver:
+					RequestMappingInfo:
+                    	
 				Controller:
 					handleRequset():
+			DispatcherServlet:
+				onRefresh():
+			HandlerExecutionChain:
+				getHandler():
 			HandlerInterceptor:
 				preHandle():
 				postHandle():
 				afterCompletion():
+			HandlerMapping:
+				URI_TEMPLATE_VARIABLES_ATTRIBUTE:
 	
+
+		
+	
+org.aopalliance:
+	aop:
+		Advice:
+	intercept:
+		MethodInterceptor:
+			invoke():
+		MethodInvocation:
+			proceed():
 org.aspectj:
 	lang:
 		annotation:
+			After:
 			Aspect: AOP注解
 			Before:
+			Pointcut:
 
 com.alibaba.druid:
 	pool:
