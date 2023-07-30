@@ -18,7 +18,9 @@
 
 ![image-20230729060051075](Tomcat.assets/image-20230729060051075.png)
 
+Tomcat内嵌容器
 
+![image-20230730195504113](Tomcat.assets/image-20230730195504113.png)
 
 
 

@@ -388,38 +388,3 @@ sum:
 ```
 
 
-
-### java.io
-
-#### FileInputStream
-
-
-
-### java.nio
-
-#### channels
-
-##### FileChannel
-
-```
-FileChannel:
-	read():
-```
-
-
-
-
-
-#### ByteBuffer
-
-```
-ByteBuffer:
-	allocate():
-	---
-	clear():
-	compact():
-	flip(): 切换读写模式
-	get():
-	hasRemaining():
-```
-

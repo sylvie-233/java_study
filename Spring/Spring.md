@@ -10,7 +10,7 @@
 >
 > ​	SSM练手小项目：P33
 >
-> ​	Spring5底层教程：P89
+> ​	Spring5底层教程：P143
 
 [TOC]
 
@@ -221,6 +221,46 @@ Aspect（多切点通知）->Advisor（单切点通知）->MethodInterceptor环�
 
 ![image-20230729055625071](Spring.assets/image-20230729055625071.png)
 
+
+
+控制器方法：
+
+![image-20230730082156290](Spring.assets/image-20230730082156290.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### DispatcherServlet
 
 onRefresh()初始化：
@@ -257,6 +297,14 @@ onRefresh()初始化：
 
 
 
+![image-20230730082329688](Spring.assets/image-20230730082329688.png)
+
+![image-20230730082456463](Spring.assets/image-20230730082456463.png)
+
+
+
+
+
 
 
 类型转换
@@ -266,6 +314,10 @@ onRefresh()初始化：
 Binder
 
 
+
+Adapter
+
+![image-20230730162618767](Spring.assets/image-20230730162618767.png)
 
 
 
@@ -463,8 +515,9 @@ org.springframework:
 					registerSingleton():
 					setAutowireCandidateResolver():
 				DefaultSingletonBeanRegistry:
+					loadBeanDefinitions():
 			xml:
-            	XmlBeanDefinitionReader: Bean加载器
+            	XmlBeanDefinitionReader: xml Bean定义加载器
             BeanFactory:
                 addBeanPostProcessor(): 添加Bean后置处理器（注解解析）
             	containsBean():
@@ -490,22 +543,98 @@ org.springframework:
 				format:
 					WebConversionService:
 				servlet:
+					error:
+						BasicErrorController:
+							
 					DispatcherServletRegistrationBean:
 						setLoadOnStartup():
+					WelcomePageHandlerMapping:
+						
+		builder:
+			SpringApplicationBuilder:
+				sources():
 		context:
+			config:
+				ConfigDataEnvironmentPostProcessor:
+					postProcessEnvirontment():
+				ConfigDataLoader:
+			event:
+				EventPublishingRunListener:
+					
 			properties:
+				bind:
+					Binder: 配置属性绑定器
+						bind():
+						get():
 				ConfigurationProperties:
 				ConfigurationPropertiesBindingPostProcessor:
 					register():
 		convert:
 			ApplicationConversionService:
+		diagnostics:
+			FailureAnalysisReporter:
+			FailureAnalyzer:
+		env:
+			EnvironmentPostProcessor:
+				postProcessEnvironment():
+			EnvironmentPostProcessorApplicationListener:
 				
+			PropertySourceLoader:
+		logging:
+			LoggingSystemFactory:
+		sql:
+			init:
+				dependency:
+					DatabaseInitializerDetector:
+                    DependsOnDatabaseInitializationDetector:
 		web:
+			server:
+				ErrorPageRegistar:
+					registerErrorPage()):
+				ErrorPageRegistarBeanPostProcessor: webServer错误页面配置
+					
+				ErrorPageRegistry:
+					addErrorPage():
 			servlet:
 				context:
 					AnnotaionConfigServletWebServerApplicationContext: 基于Web注解（ServletWebServerFactory、DispatcherServlet、DispatcherServletRegistraionBean（注册到Server））
+				support:
+					SpringBootServletInitializer:
+						configure():
 				HandlerMapping:
-					
+				RegistrationBean:
+					OnStartup():
+				ServletRegistrationBean:
+					addRegistration(): 给ServletContext注册Servlet
+		ApplicationArguments:
+			getNonOptionsArgs(:)
+			getOptionNames():
+			getSourceArgs():
+		ApplicationEnvironment: Application环境配置信息
+			getPropertySources():
+		ApplicationRunner:
+			run():
+		CommandLineRunner:
+			run():
+		DefaultBootstrapContext:
+		
+		SpringApplication:
+			addInitializers():
+			addListeners():
+			getInitializers():
+        	run():
+        	setSources():
+        SpringApplicationRunListener: Application事件发布器
+        	contextLoaded():
+        	contextPrepared():
+        	environmentPrepared():
+        	failed():
+        	running():
+        	started():
+        	starting():
+        SpringBootBanner:
+        SpringBootExceptionReporter:
+        	
 	cache:
 		interceptor:
 			CacheOperationSourcePointcut:
@@ -528,12 +657,16 @@ org.springframework:
 				
 	context:
 		annotation:
+			AnnotationBeanDefinitionReader: 注解Bean定义读取
+				register():
 			AnnotationBeanNameGenerator:
 			AnnotationConfigApplicationContext: 基于注解配置类
 			AnnotationConfigUtils:
 				registerAnnotationConfigProcessors(): 给BeanFarcory添加注解解析扩展
 			Configuration: 配置类
 			Bean: Bean类
+			ClassPathBeanDefinitionScanner:
+				scan():
 			ComponentScan:
 				Filter:
 			ConfigurationClassPostProcessor: （@ComponentScan、@Import）
@@ -549,8 +682,9 @@ org.springframework:
 				request:
 				session:
 				application:
-				
+	
 		event:
+			ContextRefreshedEvent:
 			EventListener:
 			internalEventListenerFactory:
 			internalEventListenerProcessor:
@@ -572,11 +706,16 @@ org.springframework:
 			getMessage():
 			getResources():
 			publishEvent():
+		ApplicationContextInitializer: SpringBoot初始化器
+			initialize():
 		ApplicationAware:
 			setApplicationContext():
 		ApplicationEvent:
+			
 		ApplicationEventPublisher:
 			publishEvent():
+		ApplicationListener:
+			onApplicationEvent():
 		ConfigurableApplicationContext:
 			getBeanDefinitionNames():
 		MessageSource: 国际化信息
@@ -592,8 +731,21 @@ org.springframework:
 				isPresent():
 			Order:
 		env:
+			CommandLinePropertySource:
+				
 			EnvironmentCapable:
+			PropertySource:
+			SimpleCommandLinePropertySource:
+			
+			StandardEnvironment:
 		io:
+			support:
+				ResourcePropertySource:
+					
+				SpringFactoriesLoader:
+					loadFactories():
+					loadFactoryNames():
+			DefaultResourceLoader:
 			PathMatchingResourcePatternResolver:
 				getResources():
 		type:
@@ -657,6 +809,8 @@ org.springframework:
 	util:
 		AnPathMatcher:
 			extractUriTemplateVariables():
+		ClassUtils:
+			isPresent():
 	validation:
 		annotation:
 			Validated: 字段校验注解
@@ -672,7 +826,9 @@ org.springframework:
 	web:
 		bind:
 			annotaion: WEB注解
+				ControllerAdvice:
 				CrossOrigin: 跨域处理
+				ExceptionHandler: 异常处理
 				GetMapping:
 				InitBinder: 初始化绑定器WebDataBinder
 				RequestBody:
@@ -699,6 +855,8 @@ org.springframework:
 					getNativeResponse():
 		method:
 			annotation:
+				ModelFactory:
+					initModel(): 初始化模型数据
                 RequestHeaderMethodArgumentResolver: @RequestHeader解析
 				RequestHeaderMapMethodArgumentResolver:
 				RequestParamMethodArgumentResolver: @RequestParam解析
@@ -714,26 +872,64 @@ org.springframework:
 				HandlerMethodReturnValueResolver:
 					handleReturnValue():
 					supportsReturnType():
+                HandlerMethodReturnValueHandlerComposite:
+                	
 				ModelAndViewContainer:
 					getModel():
                 	setRequestHandled():
 			HandlerMethod:
 				getMethodParameters():
 		servlet:
+			function:
+				support:
+					HandlerFunctionAdapter:
+					RouterFunctionMapping:
+				HandlerFunction:
+					handle():
+				RequestPredicates:
+					GET():
+				RouterFunction:
+				RouterFunctions:
+					route():
+				ServerResponse:
+				
+			handler:
+				BeanNameUrlHandlerMapping:
+					
+				HandlerExceptionResolverComposite:
+				SimpleUrlHandlerMapping:
+					setUrlMap():
 			mvc:
 				method:
 					annotation:
+						ExceptionHandlerExceptionResolver:
+							afterPropertiesSet():
+							resolveException():
+							setMessageConverters():
+						ModelAndViewMethodReturnValueHandler: ModelAndView返回值解析
 						PathVariableMethodArgumentResolver: @PathVariable解析
 						PathVariableMapMethodArgumentResolver:
+						RequestBodyAdvice:
 						RequestMappingHandlerAdapter:
+							afterPropertiesSet():
 							getArgumentResolvers():
 							getReturnValueHandlers():
 							invokeHandlerMethod():
+							setApplicationContext():
 							setCustomArgumentResolvers():
 						RequestMappingHandlerMapping:
 							getHandler():
 							getHandlerMethods():
 						RequestResponseBodyMethodProcessor:
+						ResponseBodyAdvice:
+							beforeBodyWrite():
+							supports():
+						ServletInvocableHandlerMethod:
+							invokeAndHandle():
+							setDataBinderFactory():
+							setHandlerMethodReturnValueHandlers():
+							setHandlerMethodArgumentResolvers():
+							setParameterNamDiscoverer():
 						ServletModelAttributeMethodProcessor:
 						ServletRequestDataBinderFactory: 参数绑定工厂
 							createBinder():
@@ -743,18 +939,45 @@ org.springframework:
                     	
 				Controller:
 					handleRequset():
+				HttpRequestHandlerAdapter:
+					
+				SimpleControllerHandlerAdapter:
+					
+			resource:
+				CachingResourceResolver:
+				EncodedResourceResolver:
+				PathResourceResolver:
+            	ResourceHttpRequestHandler:
+            		setLocations():
+            		setResourceResolvers():
+			view:
+				freemarker:
+					FreeMarkerViewResovler:
+						
+				BeanNameViewResolver:
 			DispatcherServlet:
+				doDispatch():
 				onRefresh():
+				processDispatchResult(): 异常处理
+				processHandlerException(): 异常处理
+			HandlerAdapter: 控制器方法调用
+				getLastModified():
+				handle():
+				supports():
+				
 			HandlerExecutionChain:
 				getHandler():
 			HandlerInterceptor:
 				preHandle():
 				postHandle():
 				afterCompletion():
-			HandlerMapping:
+			HandlerMapping: 请求路径映射
 				URI_TEMPLATE_VARIABLES_ATTRIBUTE:
+				getHandler(): 返回Handler执行链
 	
-
+		util:
+			UrlPathHelper:
+				resolveAndCacheLookupPath():
 		
 	
 org.aopalliance:
@@ -765,6 +988,21 @@ org.aopalliance:
 			invoke():
 		MethodInvocation:
 			proceed():
+			
+org.apache:
+	catalina:
+		connector:
+			Connector:
+				setPort():
+		startup:
+			Tomcat:
+				addContext():
+				setBaseDir():
+				setConnector():
+				start():
+		Context:
+			addServletContainerInitializer():
+
 org.aspectj:
 	lang:
 		annotation:
