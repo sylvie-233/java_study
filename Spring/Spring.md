@@ -10,7 +10,7 @@
 >
 > ​	SSM练手小项目：P33
 >
-> ​	Spring5底层教程：P143
+> ​	Spring5底层教程：P156
 
 [TOC]
 
@@ -539,6 +539,12 @@ org.springframework:
     		convertIfNecessary():
 	boot:
 		autoconfigure:
+			condition: 条件注解
+				ConditionalOnMissingBean:
+					
+			jdbc:
+				DataSourceAutoConfiguration:
+					
 			web:
 				format:
 					WebConversionService:
@@ -548,6 +554,8 @@ org.springframework:
 							
 					DispatcherServletRegistrationBean:
 						setLoadOnStartup():
+					WebMvcAutoConfiguration:
+						
 					WelcomePageHandlerMapping:
 						
 		builder:
@@ -663,6 +671,9 @@ org.springframework:
 			AnnotationConfigApplicationContext: 基于注解配置类
 			AnnotationConfigUtils:
 				registerAnnotationConfigProcessors(): 给BeanFarcory添加注解解析扩展
+			Condition:
+				matches():
+			Conditional:
 			Configuration: 配置类
 			Bean: Bean类
 			ClassPathBeanDefinitionScanner:
@@ -670,7 +681,11 @@ org.springframework:
 			ComponentScan:
 				Filter:
 			ConfigurationClassPostProcessor: （@ComponentScan、@Import）
+			DeferredImportSelector: 延迟导入
 			FilterType:
+			Import: 导入其他类
+			ImportSelect: 配置选择类（读取配置文件中的导入类信息）
+				selectImports():
 			internalAutowireAnnotationProcessor: 注解解析处理器
 				postProcessBeanFactory(): 为BeanFactory中的Bean解析注解
 			internalCommonAnnotationProcessor:
