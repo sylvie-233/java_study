@@ -2475,6 +2475,41 @@ NavigationUI:
 
 
 
+
+
+
+
+## JNI
+
+```
+System.loadLibrary(): Java加载库
+（）
+native xxx(): c++函数声明
+
+
+--- .so库文件生成
+#include <jni.h>
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_包名_activity名_xxx(JNIEnv* env, jobject) {
+	return env->NewStringUTF();
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## API
 
 ```
