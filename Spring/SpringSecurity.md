@@ -12,6 +12,32 @@
 
 <img src="SpringSecurity.assets/image-20230117134704969.png" alt="image-20230117134704969" style="zoom:67%;" />
 
+认证
+
+![0eff326586ce474c9c128062dd2a2cdd](SpringSecurity.assets/0eff326586ce474c9c128062dd2a2cdd.png)
+
+![27904d87e48c4ec5849bea64fb6c4fd7](SpringSecurity.assets/27904d87e48c4ec5849bea64fb6c4fd7.png)
+
+
+
+过滤器链
+
+![139774](SpringSecurity.assets/139774.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 依赖：
 
 ```
@@ -84,7 +110,7 @@ PersistentTokenRepository根据series查询token值
 
 cookies令牌值
 
-<img src="SpringSecurity.assets/image-20230119180600422.png" alt="image-20230119180600422" style="zoom:67%;" />
+<img src="SpringSecurity.assets/image-20230119180600422.png" alt="image-20230119180600422"  />
 
 
 
@@ -441,6 +467,12 @@ AntPathMatcher路径匹配器
 
 
 ## API
+
+```
+
+```
+
+
 
 
 

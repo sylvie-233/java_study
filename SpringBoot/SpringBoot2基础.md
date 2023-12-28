@@ -1,20 +1,16 @@
-# SpringBoot2基础
+# SpringBoot基础
 
-Sylvie233的SpringBoot2学习~~~
+Sylvie233的SpringBoot学习~~~
 
 > Author: Sylvie233
 >
 > Date: 2022/10/17
-
-
-
->Update: 2022/10/21
 >
->Point: 
+> Point:
 
 [TOC]
 
-## SpringBoot介绍
+## 基础介绍
 
 Spring容器（IOC容器）
 
@@ -48,15 +44,40 @@ application.properties/application.yml
 
 
 
+### 自动装配
+
+starter
+
+
+
+
+
+### Yaml
 
 
 
 
 
 
-## SpringBoot基础
 
-### JavaConfig
+
+
+
+
+## 核心内容
+
+```
+org.springframework.boot:
+	autoconfigure:
+		SpringBootApplication:
+			
+	SpringApplication:
+		run():
+```
+
+
+
+
 
 Spring上下文依赖
 
@@ -123,17 +144,7 @@ ctx.getBean("方法名")
 
 
 
-### Maven配置
-
-pom.xml
-
-```
-
-```
-
-
-
-### Spring Web
+### SpringWeb
 
 依赖
 
@@ -258,29 +269,29 @@ form其它类型请求方式：
 
 
 
+#### 配置
+
+```
+
+```
+
+
+
+#### 异常处理
+
+![ac5fda601dfe48e0a7cba7635923fa9c](SpringBoot2基础.assets/ac5fda601dfe48e0a7cba7635923fa9c.png)
 
 
 
 
 
 
-### Runner接口
-
-run()方法，类似钩子函数
-
-CommandLineRunner
-
-容器已经创建好了
-
-
-
-ApplicationRunner
 
 
 
 
 
-### 拦截器
+#### 拦截器
 
 拦截Controller中的请求
 
@@ -300,7 +311,7 @@ class MyInterceptor implements HandlerInterceptor {
 
 
 
-### Servlet
+#### Servlet
 
 HttpServlet
 
@@ -316,7 +327,7 @@ public class MyServlet extends HttpServlet {
 
 
 
-### Filter
+#### Filter
 
 实现Filter接口
 
@@ -354,7 +365,7 @@ filter.setEncoding("utf-8")
 
 
 
-### 事务
+#### 事务
 
 @Transactional
 
@@ -368,9 +379,9 @@ filter.setEncoding("utf-8")
 
 
 
-## SpringBoot常用第三方库
+## 第三方库
 
-### Thymeleaf模板集成
+### Thymeleaf
 
 Java模板引擎
 
@@ -680,7 +691,7 @@ th:include="~{ name }"
 
 
 
-### JSP集成
+### JSP
 
 依赖
 
@@ -973,7 +984,14 @@ consumer消费者
 
 
 
-## SpringBoot常用API
+## API
+
+```
+:
+	
+```
+
+
 
 ### 1.SpringApplication
 
@@ -1089,7 +1107,7 @@ session.geteId()
 
 
 
-## SpringBoot常用注解
+## 常用注解
 
 ### 1.@Configuration
 
@@ -1409,7 +1427,7 @@ Configuration元数据
 
 
 
-## SpringBoot常用配置
+## 常用配置
 
 application.properties
 
@@ -1486,7 +1504,7 @@ dubbo:
 
 
 
-## SpringBoot项目部署
+## 项目部署
 
 ### jar包生成
 

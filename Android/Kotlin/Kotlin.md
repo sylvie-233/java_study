@@ -5,21 +5,28 @@
 > Date: 23/5/23
 >
 > Point:
-
-[TOC]
+> 	全网稀缺】2021Android从零入门到实战(Kotlin最新版)：P5
 
 ## 基础介绍
 
-### 关键字
 
 ```
 关键字:
 	break:
 	false:
 	in:
+	println:
 	true:
+	val:
+	var:
 	
 ```
+
+
+
+
+
+
 
 
 
@@ -36,7 +43,11 @@
 	---
 	Boolean:
 	Byte:
+	Double:
+	Float:
 	Int:
+	Long:
+	Short:
 	String:
 	Array<T>:
 		IntArray:
@@ -57,13 +68,16 @@
 	Range:
 		---
 		IntRange:
+	Set:
+		---
+		MutableSet:
 ```
 
 
 
 #### 字符串
 
-```
+```kotlin
 "字符串"
 
 
@@ -76,106 +90,26 @@
 
 
 
-#### 范围
-
-```
-// Range
-'a' .. 'c'
-
-1 .. 10 step 2
-
-1 until 10
-
-10 downTo 1
-```
-
-
-
-
-
-
-
-
-
-
-
-### 变量
-
-#### var
-
-
-
-#### val
-
-
-
 ### 流程控制
-
-#### if
-
-
-
-#### when
+```kotlin
+// if ... else ...
 
 ```
-when (x) {
-	is Int -> {
-		xxx
-	}
-	in 1 .. 10 -> {
-		xxx
-	}
-	else -> {
-		xxx
-	}
-}
-```
 
 
 
-#### while
 
 
 
-#### for
-
-```
-for (i in arr) {
+#### 函数
+```kotlin
+fun xxx() {
 	
 }
 ```
 
 
 
-
-
-
-
-
-
-### 函数
-
-```
-fun main() {}
-```
-
-
-
-#### lambda
-
-##### it
-
-
-
-##### run
-
-
-
-#### 泛型
-
-
-
-#### vararg
 
 
 
@@ -185,12 +119,12 @@ fun main() {}
 
 #### class
 
-```
+```kotlin
 class Xxx(xxx: Int) {
 	var xxx: Int = 1
-	private get() = field
+	private get() = xxx
 	set(value) {
-		field = value
+		xxx = value
 	}
 	
 	fun xxx() {}
@@ -199,6 +133,9 @@ class Xxx(xxx: Int) {
 	init {}
 }
 ```
+
+
+类
 
 
 
@@ -284,9 +221,24 @@ lazy
 
 
 
+##### 泛型
+
+
+
+##### 注解
+
+
+
+
+
+
 
 
 #### interface
+```kotlin
+
+
+```
 
 
 
@@ -343,6 +295,13 @@ coroutines:
 
 
 
+## Android
+
+
+
+
+
+## Jetpack
 
 
 

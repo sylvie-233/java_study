@@ -12,7 +12,25 @@ Sylvie233的Java基础学习~~~
 
 [TOC]
 
-## Netty介绍
+## 基础介绍
+
+![aa73567d6b1c4d2e8d358e37d8ceac01](Netty基础.assets/aa73567d6b1c4d2e8d358e37d8ceac01.png)
+
+![netty-jiangjie-1](Netty基础.assets/netty-jiangjie-1.png)
+
+![18694455-a3c9ef5cb186f425](Netty基础.assets/18694455-a3c9ef5cb186f425.webp)
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### EventLoopGroup
 
@@ -36,6 +54,16 @@ accept事件、读写事件
 
 ### Channel
 
+![image-20230729135448697](Netty基础.assets/image-20230729135448697.png)
+
+
+
+
+
+
+
+
+
 
 
 ### Future&Promise
@@ -53,6 +81,10 @@ accept事件、读写事件
 
 
 Head handle、Tail handle
+
+![image-20230729135633156](Netty基础.assets/image-20230729135633156.png)
+
+
 
 
 
@@ -84,7 +116,33 @@ bytebuf的释放
 
 
 
-## Netty库(io.netty)
+
+
+
+
+## 核心内容
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## API
+
+```
+
+```
+
+
 
 ### bootstrap
 
