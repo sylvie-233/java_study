@@ -5,7 +5,7 @@
 > Date: 23/5/23
 >
 > Point:
-> 	全网稀缺】2021Android从零入门到实战(Kotlin最新版)：P5
+> 	全网稀缺】2021Android从零入门到实战(Kotlin最新版)：P27
 
 ## 基础介绍
 
