@@ -12,21 +12,18 @@
 
 Android版本
 
-<img src="Android基础.assets/image-20230512104518844.png" alt="image-20230512104518844" style="zoom:67%;" />
-
+![](Android基础.assets/image-20230512104518844.png)
 
 
 **Android技术架构**
 
-<img src="Android基础.assets/image-20230512104600383.png" alt="image-20230512104600383" style="zoom:67%;" />
-
-<img src="Android基础.assets/image-20230512104649244.png" alt="image-20230512104649244" style="zoom:67%;" />
+![](Android基础.assets/image-20230512104600383.png)
+![](Android基础.assets/image-20230512104649244.png)
 
 
 
 Android单位
-
-<img src="Android基础.assets/image-20230516081433185.png" alt="image-20230516081433185" style="zoom:67%;" />
+![](Android基础.assets/image-20230516081433185.png)
 
 
 
@@ -200,7 +197,7 @@ Android单位
 
 
 
-<img src="Android基础.assets/image-20230529204609668.png" alt="image-20230529204609668" style="zoom:67%;" />
+![](Android基础.assets/image-20230529204609668.png)
 
 
 
@@ -222,13 +219,13 @@ Android单位
 - 后台进程
 - 空进程
 
-<img src="Android基础.assets/image-20230526212325916.png" alt="image-20230526212325916" style="zoom:67%;" />
+![](Android基础.assets/image-20230526212325916.png)
 
-<img src="Android基础.assets/image-20230526212352941.png" alt="image-20230526212352941" style="zoom:67%;" />
+![](Android基础.assets/image-20230526212352941.png)
 
-<img src="Android基础.assets/image-20230526212522776.png" alt="image-20230526212522776" style="zoom:67%;" />
+![](Android基础.assets/image-20230526212522776.png)
 
-<img src="Android基础.assets/image-20230526212539286.png" alt="image-20230526212539286" style="zoom:67%;" />
+![](Android基础.assets/image-20230526212539286.png)
 
 
 
@@ -362,20 +359,19 @@ AppCompatActivity:
 
 #### 生命周期
 
-<img src="Android基础.assets/image-20230515212223905.png" alt="image-20230515212223905" style="zoom:67%;" />
+![](Android基础.assets/image-20230515212223905.png)
 
 
 
 状态转换
 
-<img src="Android基础.assets/image-20230515212729735.png" alt="image-20230515212729735" style="zoom:67%;" />
+![](Android基础.assets/image-20230515212729735.png)
 
 
 
 2个Activity的生命周期
 
-<img src="Android基础.assets/image-20230515212911885.png" alt="image-20230515212911885" style="zoom:67%;" />
-
+![](Android基础.assets/image-20230515212911885.png)
 
 
 
@@ -409,13 +405,13 @@ Intent:
 
 
 
-<img src="Android基础.assets/image-20230523210027518.png" alt="image-20230523210027518" style="zoom:67%;" />
+![](Android基础.assets/image-20230523210027518.png)
 
 
 
 Intent解析
 
-<img src="Android基础.assets/image-20230526184908883.png" alt="image-20230526184908883" style="zoom:67%;" />
+![](Android基础.assets/image-20230526184908883.png)
 
 
 
@@ -448,7 +444,7 @@ Action:
 
 
 
-<img src="Android基础.assets/image-20230523211841182.png" alt="image-20230523211841182" style="zoom:67%;" />
+![](Android基础.assets/image-20230523211841182.png)
 
 
 
@@ -530,9 +526,9 @@ Fragment:
 
 ##### 生命周期
 
-<img src="Android基础.assets/image-20230516092736671.png" alt="image-20230516092736671" style="zoom:67%;" />
+![](Android基础.assets/image-20230516092736671.png)
 
-<img src="Android基础.assets/image-20230516092907532.png" alt="image-20230516092907532" style="zoom:67%;" />
+![](Android基础.assets/image-20230516092907532.png)
 
 
 
@@ -672,6 +668,15 @@ EditText:
 #### FloatingActionButton
 
 
+#### GridView
+```yaml
+GridView:
+	
+```
+
+网格视图
+
+
 
 #### HorizontalScrollView
 
@@ -706,11 +711,21 @@ ImageView:
 	setScaleType:
 ```
 
-
+图片视图控件
 
 
 
 #### ListView
+
+```yaml
+ListView:
+	setAdapter(): 设置适配器
+```
+
+列表视图
+
+Adapter适配器
+
 
 
 
@@ -783,7 +798,7 @@ ScrollView:
 	
 ```
 
-
+上下滑动视图
 
 
 
@@ -916,6 +931,9 @@ ViewPager:
 	
 ```
 
+左右滑动视图
+
+
 
 
 
@@ -993,7 +1011,7 @@ Localization:
 
  系统广播
 
-<img src="Android基础.assets/image-20230526203325112.png" alt="image-20230526203325112" style="zoom:67%;" />
+![](Android基础.assets/image-20230526203325112.png)
 
 
 
@@ -1217,7 +1235,7 @@ Service:
 
 
 
-<img src="Android基础.assets/image-20230528194012845.png" alt="image-20230528194012845" style="zoom:67%;" />
+![](Android基础.assets/image-20230528194012845.png)
 
 ##### IntentService
 
@@ -1293,7 +1311,7 @@ MediaPlayer:
 
 
 
-<img src="Android基础.assets/image-20230530185838661.png" alt="image-20230530185838661" style="zoom:67%;" />
+![](Android基础.assets/image-20230530185838661.png)
 
 
 
@@ -1536,11 +1554,11 @@ SharedPreferences:
 	getString():
 ```
 
-<img src="Android基础.assets/image-20230528213451402.png" alt="image-20230528213451402" style="zoom:67%;" />
+![](Android基础.assets/image-20230528213451402.png)
 
-<img src="Android基础.assets/image-20230528213542825.png" alt="image-20230528213542825" style="zoom:67%;" />![image-20230528213615904](Android基础.assets/image-20230528213615904.png)![image-20230528213619783](Android基础.assets/image-20230528213619783.png)
+![](Android基础.assets/image-20230528213542825.png)![image-20230528213615904](Android基础.assets/image-20230528213615904.png)![image-20230528213619783](Android基础.assets/image-20230528213619783.png)
 
-<img src="Android基础.assets/image-20230528213624129.png" alt="image-20230528213624129" style="zoom:67%;" />
+![](Android基础.assets/image-20230528213624129.png)
 
 
 
@@ -1637,7 +1655,7 @@ Preference:
 
 #### 内部存储器
 
-<img src="Android基础.assets/image-20230528220900529.png" alt="image-20230528220900529" style="zoom:67%;" />
+![](Android基础.assets/image-20230528220900529.png)
 
 
 
@@ -1666,7 +1684,7 @@ Preference:
 
 
 
-<img src="Android基础.assets/image-20230528223253130.png" alt="image-20230528223253130" style="zoom:67%;" />
+![](Android基础.assets/image-20230528223253130.png)
 
 
 
@@ -2126,6 +2144,14 @@ AppBarConfiguration:
 ```
 
 
+#### \<shape>
+
+```
+<shape>
+	<corners>
+	<solid>
+	<stroke>
+```
 
 #### \<vector>
 
