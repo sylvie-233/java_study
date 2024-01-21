@@ -4,11 +4,26 @@
 >
 > Date: 23/6/1
 >
-> Point: 
+> Point: 手把手带你用Kotlin开发安卓 To-Do App P28
 
-[TOC]
 
 ## JetPack
+API
+```yaml
+androidx:
+	lifecycle:
+		AndroidViewModel:
+		LiveData:
+	recyclerview:
+		widget:
+			ItemTouchHelper:
+	room:
+		Dao:
+		Insert:
+		Query:
+```
+
+
 
 ### AppCompatActivity
 
@@ -94,6 +109,9 @@ DataBindingUtil:
 为layout生成`XXXbinding`类
 
 
+BindingAdapter实现xml中的方法
+
+
 
 
 
@@ -160,12 +178,51 @@ LifecycleObserver:
 
 
 
+### Room
 
 
 
 
 
+### Navigation
 
+#### Navigation Graph
+
+```
+<navigation>
+	<fragment>
+		<action>
+```
+
+
+设置路由规则
+
+
+#### NavHostFragment
+
+
+类似router-view，应用上NavigationGraph
+本身也是个fragment
+
+
+#### NavController
+
+
+路由router工具、利用action连线跳转
+利用navArgs获取参数
+
+
+#### NavgationComponent
+
+```
+NavgationComponent:
+	
+```
+
+
+#### TransitionAnimation
+
+enterAnim、exitAnim、PopEnterAnim、PopExitAnim四个动画
 
 
 

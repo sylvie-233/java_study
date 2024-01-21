@@ -27,6 +27,8 @@ Android单位
 
 
 
+利用View+Adapter实现列表渲染
+
 
 
 
@@ -264,10 +266,10 @@ adb:
 	-d:
 	-e:
 	-s:
-	connect:
+	connect: 连接设备
 	devices:
 	get-state:
-	install:
+	install: 安装APK
 		-r:
 	kill-server:
 	logcat: (V|D|I|W|E|F|S)
@@ -276,53 +278,68 @@ adb:
 		-v:
 			color:
 			time:
-	pull:
-	push:
-	shell:
-		am: ActivityManager
-			start:
+	pull: 下拉文件
+	push: 上传文件
+	shell: 进入android系统
+		am: ActivityManager页面管理
+			start: 切换页面
 				-n:
 		cat:
 			
 		cmd:
 		date:
-		dumpsys:
+		dumpsys: 获取系统当前运行信息
 			activitys:
 			battery:
 			cpuinfo:
 			meminfo:
 			windown
-		input:
-			keyevent:
+		exit: 退出安卓系统
+		input: 模拟输入
+			keyevent: 系统案件
 				3: Home
 				4: 返回键
 				24: 音量+
 				25:	音量-+
 			press:
 			roll:
-			swipe:
-			tap:
-			text:
+			swipe: 滑动内容
+			tap: 点击指定位置
+			text: 输入内容
 		ls:
-		monkey: 性能测试工具
+		monkey: 性能测试工具:压测
 			--bugreport:
 			--ignore-crashes:
 			-p: 指定包名
 			--pct-touch:
 			-s:
 			--throttle:
-			-v:
-		pm: PackageManager:
+			-v: 日志等级
+		pm: PackageManager包管理
 			clear:
 			list:
-				packages:
+				packages: 列出安装的包
 					-3:
 					-s:
 		top:
 			
-	uninstall:
+	uninstall: 卸载指定package
 		-k:
+	version: 版本
 ```
+
+
+android调试工具：安卓调试桥
+
+
+#### aapt
+
+```
+aapt:
+	dump:
+```
+
+
 
 
 
@@ -333,7 +350,28 @@ adb:
 ```
 
 
+### APK
 
+```
+apk目录:
+	/assets: 静态资源文件
+	/com:
+	/lib: 动态链接库文件
+	/META-INF: 签名想那些
+		CERT.RSA:
+		CERT.SF:
+		CHANGES:
+		LICENSE:
+		MANIFEST.MF:
+		README:
+	/org:
+	/res: 资源文件
+	/templates:
+	AndroidManifest.xml:
+	classes.dex: java字节码
+	classes2.dex:
+	resources.arsc: 二进制资源文件（映射表）
+```
 
 
 
@@ -634,7 +672,7 @@ CheckBox:
 	isChecked():
 ```
 
-
+复选框
 
 
 
@@ -759,6 +797,7 @@ RadioButton:
 	isChecked():
 ```
 
+单选按钮
 
 
 #### RadioGroup
@@ -900,6 +939,7 @@ Toast:
 ```
 
 
+弹框显示
 
 
 
@@ -1886,6 +1926,7 @@ ContextMenu:
 
 
 
+
 #### Toolbar
 
 
@@ -2066,7 +2107,14 @@ AppBarConfiguration:
 
 
 
+#### \<menu>
 
+```
+<menu>:
+	<group>:
+		<item>:
+	<item>:
+```
 
 
 
@@ -2143,6 +2191,15 @@ AppBarConfiguration:
 	>
 ```
 
+
+#### \<set>
+
+```
+<set>
+	<translate>
+```
+
+动画
 
 #### \<shape>
 
