@@ -8,9 +8,7 @@ Sylvie233的Java基础学习~~~
 >
 > Point: 
 >
-> ​	JUC教程P34
-
-[TOC]
+> ​
 
 ## 基础介绍
 
