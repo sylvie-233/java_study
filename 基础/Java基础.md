@@ -7,7 +7,8 @@ Sylvie233的Java基础学习~~~
 > Date: 2022/10/21
 >
 > Point: 
->
+>	Java 设计模式：P12
+>		
 > ​
 
 ## 基础介绍
@@ -61,10 +62,150 @@ javac:
 
 
 
+- 单一职责原则：一个对象应该
+- 开闭原则：对扩展开放，对修改关闭
+- 里氏替换原则：子类型的特别定义
+- 依赖倒转原则：高层模块不应直接依赖底层模块，应该依赖抽象
+- 接口隔离原则：
+- 合成复用原则：优先使用对象组合，而不是通过继承来达到复用的目的
+- 迪米特法则：最小知识原则
+
+
+#### 创建型设计模式(5)
+
+
+##### 工厂方法模式
+
+避免直接new对象，使用工厂方法创建对象
+
+```java
+
+// 简单工厂模式
+public class FruitFactory {
+	public static Fruit getFruit(String type) {
+		switch (type) {
+			case "苹果":
+				return new Apple();
+			case "橘子":
+				return new Orange();
+			default:
+				return null; 
+		}
+	}
+}
+
+// 工厂方法模式
+public abstract class FruitFactory<T extends Fruit> {
+	public abstract T getFruit();
+}
+
+
+public class AppleFactory extends FruitFactory<Apple> { // 专门生产苹果的工厂
+	@Override
+	public Apple getFruit() {
+		return new Apple;
+	}
+}
+
+```
+
+
+##### 抽象工厂模式
+工厂方法模式只适用于简单对象，当需要生产多个产品族时，使用抽象工厂模式
+
+```java
+// 抽象工厂模式
+public abstract class AbstractFactory {
+	public abstract Phone getPhone();
+	public abstract Table getTable();
+	public abstract Router getRouter();
+}
+```
+
+
+##### 建造者模式
+Builder
+
+```java
+// 建造者模式
+public class Student {
+	private Student(int id, int age, String name) {}
+
+	public static StudnetBuilder builder() {
+		return new StudentBuilder();
+	}
+	public static class StudentBuilder {
+		int id; // 可以设置默认值
+		int age;
+		String name;
+		public StudentBuilder id(int id) {
+			this.id = id;
+			return this;
+		}
+		public StudentBuilder age(int age) {
+			this.age = age;
+			return this;
+		}
+		public StudentBuilder name(String name) {
+			this.name = name;
+			return this;
+		}
+		public Studnet build() {
+			return new Student(id, age, name);
+		}
+	}
+}
+```
 
 
 
 
+##### 单例模式
+
+
+##### 原型模式
+
+
+#### 结构型设计模式(7)
+
+##### 适配器模式
+
+##### 桥接模式
+
+##### 组合模式
+
+##### 装饰模式
+
+##### 代理模式
+
+##### 外观模式
+
+##### 享元模式
+
+
+#### 行为型设计模式(11)
+
+##### 解释器模式
+
+##### 模板方法模式
+
+##### 责任链模式
+
+##### 命令模式
+
+##### 迭代器模式
+
+##### 中介者模式
+
+##### 备忘录模式
+
+##### 观察者模式
+
+##### 状态模式
+
+##### 策略模式
+
+##### 访问者模式
 
 
 
@@ -82,6 +223,14 @@ Selector、Channel、Buffer
 
 
 ### JUC
+
+Callable和Runnable类似，但可带返回值
+
+
+
+
+
+
 
 重量级锁
 
@@ -215,6 +364,9 @@ ABA问题：带版本号的原子类解决（默认CAS自旋仅进行值比较�
 
 #### 线程池
 
+##### Executors
+
+
 ##### ThreadPoolExecutor
 
 拒绝策略
@@ -242,11 +394,11 @@ ABA问题：带版本号的原子类解决（默认CAS自旋仅进行值比较�
 
 
 #### CyclicBarrier
-
+ 类似CountDownLatch
 
 
 #### Semaphore
-
+信号量抢占、释放
 
 
 #### Exchanger
