@@ -162,50 +162,514 @@ public class Student {
 
 ##### 单例模式
 
+```java
+// 简单单例模式（饿汉式）
+public class Singleton {
+	private final static Singleton INSTANCE = new Singleton();
+	private Singleton() {}
+	public static Singleton getInstance() {
+		return INSTANCE;
+	}
+}
+
+// 简单单例模式（懒汉式）
+public class Singleton {
+	private final static Singleton INSTANCE = new Singleton();
+	private Singleton() {}
+	public static Singleton getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new Singleton();
+		}
+		return INSTANCE;
+	}
+}
+
+// 多线程优化
+public class Singleton {
+	private final static volatile Singleton INSTANCE = new Singleton();
+	private Singleton() {}
+	public static Singleton getInstance() {
+		if (INSTANCE == null) {
+			synchronized(Singleton.class) {\
+				if (INSTANCE == null) {
+					INSTANCE = new Singleton();
+				}
+			}
+		}
+		return INSTANCE;
+	}
+}
+
+```
+
 
 ##### 原型模式
+对象拷贝clone,（深拷贝、浅拷贝）
+
+```java
+//原型模式
+
+```
+
 
 
 #### 结构型设计模式(7)
 
 ##### 适配器模式
+中间接口转换适配
+
+![[Pasted image 20240221190638.png]]
+
+
+```java
+// 类适配器（继承实现）
+public class TestSupplier { // 初始类
+	public String doSupply() {
+		return "iPhone 14 pro";
+	}
+}
+
+public interface Target { // 目标接口
+	String supply();
+}
+
+public void test(Target target) { // *******使用目标接口的方法******
+	System.out.println(target.supply());
+}
+
+public class TestAdapter extends TestSupplier implements Target { // 适配实现
+	@Override
+	public String supply() {
+		return super.doSupply();
+	}
+}
+
+// 对象适配器（组合实现）
+public class TestAdapter implements Target { // 适配实现
+	TestSupplier supplier;
+
+	public TestAdaper(TestSupplier supplier) {
+		this.supplier = supplier;
+	}
+
+	@Override
+	public String supply() {
+		return supplier.doSupply();
+	}
+}
+```
 
 ##### 桥接模式
+和组合模式挺像的
+
+```java
+// 桥接模式（继承扩展）
+public abstract class AbstractTea {
+	protected Size size; // 尺寸作为桥接属性存放在类中
+
+	protected AbstractTea(Size size) { // 在构造时需要知道尺寸属性
+		this.size = size;
+	}
+
+	public abstract String getType(); // 具体类型依然是由子类决定
+}
+
+public abstract class RefinedAbstractTea extends AbstractTea { // 继承扩展属性维度
+	protected RefinedAbstractTea(Size size) {
+		super(size);
+	}
+	public abstract String getSize();
+}
+```
 
 ##### 组合模式
 
+```java
+// 就是组合
+```
+
 ##### 装饰模式
+通过组合的方式实现，不改变一个对象本身功能的继承上，给对象添加额外的行为
+和代理模式很像
+
+```java
+public abstract class Base { // 目标功能
+	public abstract void test();
+}
+
+public class Decorator extends Base { // 组合实现目标功能
+	protected Base base;
+	public Decorator(Base base) {
+		this.base = base;
+	}
+
+	@Override
+	public void test() {
+		base.test();
+	}
+}
+
+public classd DecoratorImpl extends Decorator { // 装饰实现
+	public DecoratorImpl(Base base) {
+		super(base);
+	}
+
+	@Override
+	public void test() {
+		// 前置处理
+		super.test(); // 实际调用
+		// 后置处理
+	}
+}
+
+public void main() { // 装饰使用
+	Base base = new BaseImpl();
+	Decorator decorator = new DecoratorImpl(base);
+}
+
+```
+
 
 ##### 代理模式
+当无法直接访问某个对象或访问某个对象存在困难时，可以通过一个代理对象来间接访问
+```java
+public abstract class Subject {
+	public abstract void test();
+}
+
+public class Proxy extends Subject {
+	Subject target;
+	public Proxy(Subject subject) {
+		this.target = subject;
+	}
+	@Override 
+	public void test() {
+		// 前置处理
+		target.test(); // 实际调用
+		// 后置处理
+	}
+}
+```
+
+
+JDK动态代理基于接口
+```java
+ public interface Subject {
+	 public void test();
+ }
+
+public class SubjectImpl implements Subject {
+	@Override
+	public void test() {
+		// 具体实现
+	}
+}
+
+public class TestProxy implements InvocationHandler { // 代理封装
+	private final Object object;
+	public TestProxy(Object object) {
+		this.object = object;
+	}
+	@Override
+	public Object invoke(Object proxy, Method method, Object[] args) {
+		// proxy为生成的代理对象，实现了目标Subject接口
+		Object res = method.invoke(object, args); // 在被代理对象身上调用
+		return res;
+	}
+}
+
+public void main() { // 使用代理
+	SubjectImpl subject = new SubjectImpl(); // 被代理对象(实际调用对象)
+	InvocationHandler handler = new TestProxy(subject); // 代理封装
+	Subject proxy = (Subject) Proxy.newProxyInstance( // 生成代理对象
+		subject.getClass().getClassLoader(),
+		subject.getClass().getInterface(),
+		handler
+	);
+	proxy.test();
+
+}
+```
+
+CGLib动态代理基于ASM框架实现
+
+
+
+
+
+
+
+
+
 
 ##### 外观模式
+Facade门面
+![[Pasted image 20240221202301.png]]
+多个子系统设置一个统一的门面，当子系统需要修改时，只需要修改门面中的逻辑
+
+
+
+```java
+public class Facade {
+	SubSystemA a = new SubSystemA(); // 门面组合
+	SubSystemA b = new SubSystemB();
+	SubSystemA c = new SubSystemC();
+
+	public void marry() {
+		a.test1();
+		b.test2();
+		c.test3();
+	}
+}
+```
+
 
 ##### 享元模式
+FlyWeight
+将重复出现的内容作为共享部分取出，公共部分只有一个
 
+```java
+public class DBUtilFactory {
+	private static final DBUtil UTIL = new DBUtil(); // 享元对象存放在工厂中
+	public static DBUtil getFlyweight() {
+		return UTIL;
+	}
+}
+```
 
 #### 行为型设计模式(11)
 
 ##### 解释器模式
 
+
+```java
+
+```
+
 ##### 模板方法模式
+
+程序中某些操作是固定的，可以直接在类中对应的方法进行编写，但可能某些操作需要视情况而定，由不同的子类实现来决定
+
+```java
+public abstract class Test {
+	public void test() {
+		// 前置操作
+		process(); // 调用抽象方法
+		// 后置操作
+	}
+	abstract void process();
+}
+```
 
 ##### 责任链模式
 
+![[Pasted image 20240221205544.png]]
+
+
+```java
+public abstract class Handler {
+	protected Handler successor;
+	public Handler connect(Handler successor) { // 组链
+		this.successor = successor;
+		return successor; // 方便链式调用
+	}
+	
+	public void handle() {
+		this.doHandle();
+		Optional.ofNullable(successor).ifPresent(Handler::handle); // 责任链调用
+	}
+	public abstract void doHandle(); // 每个Handler实际操作
+}
+```
+
 ##### 命令模式
+
+调用者 -> 命令 -> 接收者（功能实现）
+
+```java
+public interface Receiver {
+	void action();
+}
+
+public abstract class Command {
+	private final Receiver receiver;
+	protected Command(Receiver receiver) {
+		this.receiver = receiver;
+	}
+	public void execute() {
+		receiver.action();
+	}
+}
+
+public class Controller {
+	public static void call(Command cmd) {
+		cmd.execute();
+	}
+}
+
+
+public void main() {
+	Controller.call(new CommandImpl(new ReceiverImpl));
+}
+```
 
 ##### 迭代器模式
 
+```java
+public class MyArray<T> implements Iterable<T> {
+	private final T[] array;
+
+	@Override
+	public Iterator<T> iterator() {
+		return new MyIterator();
+	}
+	public class MyIterator implements Iterator<T> {
+		private int cur = 0;
+		@Override
+		public boolean hasNext() {
+			return cur < arr.length;
+		}
+		@Override
+		public T next() {
+			return array[cur++];
+		}
+	}
+}
+```
+
 ##### 中介者模式
+中间商提供群体对话的平台（优化了原有的复杂多对多关系，简化成一对多关系）
+```java
+public class Mediator {
+	private final Map<String, User> userMap = new HashMap<>();
+	public void register(String address, User user) {
+		userMap.put(address, user);
+	}
+	public User find(String address) {
+		return userMap.get(address);
+	}
+}
+
+public class User {
+	public void find(String address, Mediator mediator) {
+		// 前置操作
+		User user = mediator.find(address);
+		// 后置操作
+	}
+}
+```
 
 ##### 备忘录模式
+可回溯的时间节点，状态State保存和恢复
+
+```java
+// 状态保存类
+public class State { // 对象中有哪些值需要保存的，State中就有哪些字段
+	final String currentWork;
+	final int percentage;
+}
+
+
+public State save();
+public void restore(State);
+```
 
 ##### 观察者模式
 
+```java
+public interface Observer {
+	void action();
+}
+
+public class Subject {
+	private final Set<Observer> set = new HashSet<>();
+	public void observe(Observer observer) {
+		set.add(observer);
+	}
+	public void modify() { // 调用观察者
+		set.forEach(Observer::action);
+	}
+}
+```
+
+
+JDK实现
+```
+
+```
+
+
 ##### 状态模式
+不同状态下有不同的行为
+```java
+public class Subject {
+	private State state; // 状态枚举
+	public void setState(State state) {
+		this.state = state;
+	}
+	public void process() {
+		switch (state) {
+			case A:
+				// A行为
+				break;
+			case B:
+				// B行为
+				break;
+		}
+	}
+}
+```
 
 ##### 策略模式
+类似状态模式，主动指定执行的策略（策略中保存了具体的执行方法）
+
+- 策略接口
+- 策略接口的实现类
+- 策略标识枚举类
+- 策略工厂
+- 实际业务
+
+
+```java
+public interface Strategy {  // 策略接口
+	Object handle(Object arg);
+}
+
+public enum StrategyEnum { // 策略枚举标识
+	STRATEGY_A("A"),
+	STRATEGY_B("B"),
+	private String name;
+	StrategyEnum(String name) {
+		this.name = name;
+	}
+	public static StrategyEnum getStrategyName(String name);
+}
+
+public class StrategyFactory { // 策略工厂
+	private Map<String, Strategy> ctxStrategy = new HashMap<>();
+	public StrategyFactory(Map<String, Strategy> map) {
+		this.ctxStrategy = map;
+	} 
+	public Strategy getStrategy(String name) {
+		return ctxStrategy.get(name);
+	}
+}
+
+public void main() {
+	strategy = StrategyFactory.getStrategy(strategyName);
+	res = strategy.handle(arg);
+}
+```
 
 ##### 访问者模式
+
+```java
+public class Subject {}
+
+public interface Visitor {
+	void visit(Subject obj);
+}
+```
 
 
 
