@@ -7,7 +7,7 @@ Sylvie233的Java基础学习~~~
 > Date: 2023/1/3
 >
 > Point: 
-> 	千锋教育Netty入门视频教程：P10
+> 	千锋教育Netty入门视频教程：P15
 
 
 ## 基础介绍
@@ -151,12 +151,22 @@ bytebuf的释放
 ## 核心内容
 NIO非阻塞I/O
 
+### Reactor模型
+
+#### 事件响应式
+
+![[Pasted image 20240222232655.png]]
 
 
 
 
+#### 多线程模型
 
+![[Pasted image 20240222233319.png]]
 
+#### 多主多重模型
+
+![[Pasted image 20240222234852.png]]
 
 
 
