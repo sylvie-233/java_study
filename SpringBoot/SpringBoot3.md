@@ -6,9 +6,8 @@
 >
 > Point:
 >
-> ​	SpringBoot3教程：P8
+> ​	SpringBoot3教程：P3
 
-[TOC]
 
 ## 基础介绍
 
