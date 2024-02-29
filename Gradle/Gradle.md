@@ -6,8 +6,6 @@
 >
 > Point: 
 
-[TOC]
-
 
 
 ## 基础介绍
@@ -18,19 +16,31 @@
 
 
 
-`project`->`task`
+`project`->`task`、其余的均为`extensions`
 
 
 
-
-
+必备配置：plugins、repositories、dependencies
 
 
 ### 安装目录
 
 ```
-:
-		
+gradle-8.4:
+	/android:
+	/bin:
+	/caches:
+		/modules-2:
+	/daemon:
+	/docs:
+	/init.d:
+	/jdks:
+	/kotlin-profile:
+	/lib:
+	/native:
+	/notifications:
+	/src:
+	/wrapper:
 ```
 
 
@@ -90,6 +100,7 @@ plugins {
 group = "xxx"
 version = "xxx"
 sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
 
 ext {
 	
@@ -241,7 +252,8 @@ artifacts {
 #### settings.gradle
 
 ```
-rootProject.name = 'xxx '
+rootProject
+	.name = 'xxx '
 
 include 'xxx子项目'
 
@@ -289,15 +301,20 @@ gradle.projectsLoaded {}
 
 ```
 gradle指令:
+	-b: 指定文件运行
 	-d:
 	-i:
-	-q:
+	-q: 静默模式
+	-x: 排除任务
+	_taskName: 运行指定任务
+	build:
+	buildEnvironment: 
+	dependencies:
+	help: 帮助
 	init:
-
-gradle:
-	taskGraph:
-	
-	addListener():
+	projects: 列出所有project项目
+	properties:
+	tasks: 列出所有task任务
 ```
 
 
@@ -312,18 +329,26 @@ gradle:
 
 ## 核心内容
 
+### gradle
+
+```yaml
+gradle:
+	taskGraph:
+	addListener():
+```
+
 ### project
 
 ```
 project:
 	allprojects:
 	buildDir:
+	buildFileName: build.gradle名称
 	convention:
-	ext: 扩展属性
-	extensions:
-	group:
+	ext: 扩展属性（全局def）
+	group: 包名分组
 	logger:
-	name:
+	name: 包名
 	parent:
 	path:
 	project:
@@ -341,10 +366,24 @@ project:
 		register():
 		with():
 		withType():
-	version:	
+	version: 版本
+	_taskName: 	
 	property():
 	---
-	
+	extensions: 项目扩展
+		create():
+	apply(): 应用插件
+		from: 
+		plugin:
+	getConvention():
+		getPlugins():
+			put():
+	getExtensions():
+		add():
+		create():
+	getPluginManager():
+	task(): 创建任务
+			
  
 ---
 常用方法:
@@ -368,7 +407,12 @@ project:
 
 ```
 plugins:
-	
+	id: 
+		apply:
+		version:
+	---
+	apply():
+	getPlugin():
 ```
 
 
@@ -381,8 +425,15 @@ plugins:
 
 ```
 buildscript:
-	
+	repositories:
+		maven:
+			url:
+	dependencies:
+		classpath:
 ```
+
+
+声明gradle脚本自身的依赖
 
 
 
@@ -409,7 +460,11 @@ configurations:
 
 ```
 repositories:
-	
+	maven:
+		url:
+	mavenCentral:
+	gradlePluginPortal:
+	---
 ```
 
 
@@ -420,7 +475,14 @@ repositories:
 
 ```
 denpendencies:
-	
+	compile:
+	testCompile:
+	testImplementation:
+	testRuntimeOnly:
+		group:
+		name:
+		version:
+	xxxImplementation: 指定源集添加依赖
 ```
 
 ![image-20230606135214357](Gradle.assets/image-20230606135214357.png)
@@ -434,6 +496,8 @@ allprojects:
 	
 ```
 
+所有项目都生效的配置
+
 
 
 ### subprojects
@@ -443,7 +507,7 @@ subprojects:
 	
 ```
 
-
+子项目生效的配置
 
 
 
@@ -455,9 +519,33 @@ subprojects:
 
 ```
 sourceSets:
-	
+	xxx项目: 自定义源代码集（java、test）
+		java:
+			srcDirs:
+			outputDir:
+		output:
+			resourcesDir:
+		resources:
+			srcDirs:
+			
 ```
 
+
+定义源代码目录
+
+
+### test
+
+```
+test:
+	enabled:
+	exclude:
+	include:
+	useJUnitPlatform():
+	useTestNG():
+```
+
+使用测试框架
 
 
 
@@ -470,7 +558,14 @@ artifacts:
 ```
 
 
-
+### tasks
+```yaml
+tasks:
+	[]: 索引task
+	---
+	register():
+	withType(): 修改任务配置
+```
 
 
 ### task
@@ -481,23 +576,31 @@ task:
 	description:
 	enabled:
 	group:
-	mustRunAfter: 指定任务执行顺序	
+	mustRunAfter: 指定任务执行顺序
+	name: 任务名称	
 	overwrite:
-	type:
+	type: 预定义任务调用
 		Copy:
 			from:
 			into:
 			rename:
+		Jar: 封装Jar包
+			archiveBaseName:
+			archiveVersion:
+			destinationDirectory:
+			from:
 		Zip:
 			from:
 			into:
 			
 	with: 使用闭包
 	---
-	doFirst {}
-	doLast {}
+	dependsOn():
+	doFirst {}:
+	doLast {}: 
 ```
 
+task抛出异常则会跳过执行
 
 
 
@@ -525,10 +628,34 @@ task:
 #### Rule
 
 
+### uploadArchives
 
+```yaml
+uploadArchives: 发布文件
+	repositories:
+		mavenDeployer:
+			repository:
+				url:
+```
+
+发布包
+
+### publishing
+```
+publishing:
+	publications:
+		maven:
+			from:
+	repositories:
+		maven:
+			url:
+```
 
 
 ### 插件
+
+
+脚本插件(.gradle文件)、二进制插件(jar包)
 
 #### 自定义插件
 
@@ -540,10 +667,19 @@ Plugin:
 		Project:
 ```
 
+实现Plugin接口
 
 
+### jar
 
-
+```
+jar: 生成可执行jar包的配置
+	manifest:
+		attributes:
+			Manifest-Version:
+			Main-Class:
+	
+```
 
 
 

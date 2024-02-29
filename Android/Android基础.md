@@ -12,23 +12,22 @@
 
 Android版本
 
-<img src="Android基础.assets/image-20230512104518844.png" alt="image-20230512104518844" style="zoom:67%;" />
-
+![](Android基础.assets/image-20230512104518844.png)
 
 
 **Android技术架构**
 
-<img src="Android基础.assets/image-20230512104600383.png" alt="image-20230512104600383" style="zoom:67%;" />
-
-<img src="Android基础.assets/image-20230512104649244.png" alt="image-20230512104649244" style="zoom:67%;" />
+![](Android基础.assets/image-20230512104600383.png)
+![](Android基础.assets/image-20230512104649244.png)
 
 
 
 Android单位
+![](Android基础.assets/image-20230516081433185.png)
 
-<img src="Android基础.assets/image-20230516081433185.png" alt="image-20230516081433185" style="zoom:67%;" />
 
 
+利用View+Adapter实现列表渲染
 
 
 
@@ -200,7 +199,7 @@ Android单位
 
 
 
-<img src="Android基础.assets/image-20230529204609668.png" alt="image-20230529204609668" style="zoom:67%;" />
+![](Android基础.assets/image-20230529204609668.png)
 
 
 
@@ -222,13 +221,13 @@ Android单位
 - 后台进程
 - 空进程
 
-<img src="Android基础.assets/image-20230526212325916.png" alt="image-20230526212325916" style="zoom:67%;" />
+![](Android基础.assets/image-20230526212325916.png)
 
-<img src="Android基础.assets/image-20230526212352941.png" alt="image-20230526212352941" style="zoom:67%;" />
+![](Android基础.assets/image-20230526212352941.png)
 
-<img src="Android基础.assets/image-20230526212522776.png" alt="image-20230526212522776" style="zoom:67%;" />
+![](Android基础.assets/image-20230526212522776.png)
 
-<img src="Android基础.assets/image-20230526212539286.png" alt="image-20230526212539286" style="zoom:67%;" />
+![](Android基础.assets/image-20230526212539286.png)
 
 
 
@@ -267,10 +266,10 @@ adb:
 	-d:
 	-e:
 	-s:
-	connect:
+	connect: 连接设备
 	devices:
 	get-state:
-	install:
+	install: 安装APK
 		-r:
 	kill-server:
 	logcat: (V|D|I|W|E|F|S)
@@ -279,53 +278,68 @@ adb:
 		-v:
 			color:
 			time:
-	pull:
-	push:
-	shell:
-		am: ActivityManager
-			start:
+	pull: 下拉文件
+	push: 上传文件
+	shell: 进入android系统
+		am: ActivityManager页面管理
+			start: 切换页面
 				-n:
 		cat:
 			
 		cmd:
 		date:
-		dumpsys:
+		dumpsys: 获取系统当前运行信息
 			activitys:
 			battery:
 			cpuinfo:
 			meminfo:
 			windown
-		input:
-			keyevent:
+		exit: 退出安卓系统
+		input: 模拟输入
+			keyevent: 系统案件
 				3: Home
 				4: 返回键
 				24: 音量+
 				25:	音量-+
 			press:
 			roll:
-			swipe:
-			tap:
-			text:
+			swipe: 滑动内容
+			tap: 点击指定位置
+			text: 输入内容
 		ls:
-		monkey: 性能测试工具
+		monkey: 性能测试工具:压测
 			--bugreport:
 			--ignore-crashes:
 			-p: 指定包名
 			--pct-touch:
 			-s:
 			--throttle:
-			-v:
-		pm: PackageManager:
+			-v: 日志等级
+		pm: PackageManager包管理
 			clear:
 			list:
-				packages:
+				packages: 列出安装的包
 					-3:
 					-s:
 		top:
 			
-	uninstall:
+	uninstall: 卸载指定package
 		-k:
+	version: 版本
 ```
+
+
+android调试工具：安卓调试桥
+
+
+#### aapt
+
+```
+aapt:
+	dump:
+```
+
+
 
 
 
@@ -336,7 +350,28 @@ adb:
 ```
 
 
+### APK
 
+```
+apk目录:
+	/assets: 静态资源文件
+	/com:
+	/lib: 动态链接库文件
+	/META-INF: 签名想那些
+		CERT.RSA:
+		CERT.SF:
+		CHANGES:
+		LICENSE:
+		MANIFEST.MF:
+		README:
+	/org:
+	/res: 资源文件
+	/templates:
+	AndroidManifest.xml:
+	classes.dex: java字节码
+	classes2.dex:
+	resources.arsc: 二进制资源文件（映射表）
+```
 
 
 
@@ -362,20 +397,19 @@ AppCompatActivity:
 
 #### 生命周期
 
-<img src="Android基础.assets/image-20230515212223905.png" alt="image-20230515212223905" style="zoom:67%;" />
+![](Android基础.assets/image-20230515212223905.png)
 
 
 
 状态转换
 
-<img src="Android基础.assets/image-20230515212729735.png" alt="image-20230515212729735" style="zoom:67%;" />
+![](Android基础.assets/image-20230515212729735.png)
 
 
 
 2个Activity的生命周期
 
-<img src="Android基础.assets/image-20230515212911885.png" alt="image-20230515212911885" style="zoom:67%;" />
-
+![](Android基础.assets/image-20230515212911885.png)
 
 
 
@@ -409,13 +443,13 @@ Intent:
 
 
 
-<img src="Android基础.assets/image-20230523210027518.png" alt="image-20230523210027518" style="zoom:67%;" />
+![](Android基础.assets/image-20230523210027518.png)
 
 
 
 Intent解析
 
-<img src="Android基础.assets/image-20230526184908883.png" alt="image-20230526184908883" style="zoom:67%;" />
+![](Android基础.assets/image-20230526184908883.png)
 
 
 
@@ -448,7 +482,7 @@ Action:
 
 
 
-<img src="Android基础.assets/image-20230523211841182.png" alt="image-20230523211841182" style="zoom:67%;" />
+![](Android基础.assets/image-20230523211841182.png)
 
 
 
@@ -530,9 +564,9 @@ Fragment:
 
 ##### 生命周期
 
-<img src="Android基础.assets/image-20230516092736671.png" alt="image-20230516092736671" style="zoom:67%;" />
+![](Android基础.assets/image-20230516092736671.png)
 
-<img src="Android基础.assets/image-20230516092907532.png" alt="image-20230516092907532" style="zoom:67%;" />
+![](Android基础.assets/image-20230516092907532.png)
 
 
 
@@ -638,7 +672,7 @@ CheckBox:
 	isChecked():
 ```
 
-
+复选框
 
 
 
@@ -670,6 +704,15 @@ EditText:
 
 
 #### FloatingActionButton
+
+
+#### GridView
+```yaml
+GridView:
+	
+```
+
+网格视图
 
 
 
@@ -706,11 +749,21 @@ ImageView:
 	setScaleType:
 ```
 
-
+图片视图控件
 
 
 
 #### ListView
+
+```yaml
+ListView:
+	setAdapter(): 设置适配器
+```
+
+列表视图
+
+Adapter适配器
+
 
 
 
@@ -744,6 +797,7 @@ RadioButton:
 	isChecked():
 ```
 
+单选按钮
 
 
 #### RadioGroup
@@ -783,7 +837,7 @@ ScrollView:
 	
 ```
 
-
+上下滑动视图
 
 
 
@@ -885,6 +939,7 @@ Toast:
 ```
 
 
+弹框显示
 
 
 
@@ -915,6 +970,9 @@ VideoView:
 ViewPager:
 	
 ```
+
+左右滑动视图
+
 
 
 
@@ -993,7 +1051,7 @@ Localization:
 
  系统广播
 
-<img src="Android基础.assets/image-20230526203325112.png" alt="image-20230526203325112" style="zoom:67%;" />
+![](Android基础.assets/image-20230526203325112.png)
 
 
 
@@ -1217,7 +1275,7 @@ Service:
 
 
 
-<img src="Android基础.assets/image-20230528194012845.png" alt="image-20230528194012845" style="zoom:67%;" />
+![](Android基础.assets/image-20230528194012845.png)
 
 ##### IntentService
 
@@ -1293,7 +1351,7 @@ MediaPlayer:
 
 
 
-<img src="Android基础.assets/image-20230530185838661.png" alt="image-20230530185838661" style="zoom:67%;" />
+![](Android基础.assets/image-20230530185838661.png)
 
 
 
@@ -1536,11 +1594,11 @@ SharedPreferences:
 	getString():
 ```
 
-<img src="Android基础.assets/image-20230528213451402.png" alt="image-20230528213451402" style="zoom:67%;" />
+![](Android基础.assets/image-20230528213451402.png)
 
-<img src="Android基础.assets/image-20230528213542825.png" alt="image-20230528213542825" style="zoom:67%;" />![image-20230528213615904](Android基础.assets/image-20230528213615904.png)![image-20230528213619783](Android基础.assets/image-20230528213619783.png)
+![](Android基础.assets/image-20230528213542825.png)![image-20230528213615904](Android基础.assets/image-20230528213615904.png)![image-20230528213619783](Android基础.assets/image-20230528213619783.png)
 
-<img src="Android基础.assets/image-20230528213624129.png" alt="image-20230528213624129" style="zoom:67%;" />
+![](Android基础.assets/image-20230528213624129.png)
 
 
 
@@ -1637,7 +1695,7 @@ Preference:
 
 #### 内部存储器
 
-<img src="Android基础.assets/image-20230528220900529.png" alt="image-20230528220900529" style="zoom:67%;" />
+![](Android基础.assets/image-20230528220900529.png)
 
 
 
@@ -1666,7 +1724,7 @@ Preference:
 
 
 
-<img src="Android基础.assets/image-20230528223253130.png" alt="image-20230528223253130" style="zoom:67%;" />
+![](Android基础.assets/image-20230528223253130.png)
 
 
 
@@ -1868,6 +1926,7 @@ ContextMenu:
 
 
 
+
 #### Toolbar
 
 
@@ -2048,7 +2107,14 @@ AppBarConfiguration:
 
 
 
+#### \<menu>
 
+```
+<menu>:
+	<group>:
+		<item>:
+	<item>:
+```
 
 
 
@@ -2126,6 +2192,23 @@ AppBarConfiguration:
 ```
 
 
+#### \<set>
+
+```
+<set>
+	<translate>
+```
+
+动画
+
+#### \<shape>
+
+```
+<shape>
+	<corners>
+	<solid>
+	<stroke>
+```
 
 #### \<vector>
 

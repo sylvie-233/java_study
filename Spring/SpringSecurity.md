@@ -4,13 +4,106 @@
 >
 > Date: 23/1/17
 >
-> Point: P72
+> Point: 
 
-[TOC]
+
+## 入门使用
+
+SpringSecurity是由多个Filter组成的，但真正注册的Filter只有一个DelegatingFilterProxy
+![[Pasted image 20231229213118.png]]
+
+
+
+
+### SecurityConfiguration
+自定义安全配置类
+
+基础使用
+```java
+@Configuration
+class SecurityConfiguration {
+	// 注册过滤器链
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http
+			.authorizeHttpRequests( //请求放行
+				auth -> {
+					auth.
+						anyRequest().authenticated():
+						requestMatchers("/static/**").permitAll()
+							.hasRole("admin")
+				}
+			)
+			.formLogin( // 表单登录
+				conf -> {
+					conf
+						.loginPage("/login")
+						.loginProcessingUrl("/dologin")
+						
+				}
+			)
+			.logout( // 退出登录
+				conf -> {
+					conf
+						.logoutUrl()
+						
+				}
+			)
+			.csrf( // csrf保护
+				conf -> {
+					conf.disable()
+				}
+			)
+			.rememberMe( // 记住我
+				conf -> {
+					conf
+						.alwaysRemember(false)
+						.rememberMeParameter("remember-me")
+						.rememberMeCookieName("xxx")
+						.tokenRepository(tokenRepository) // 持久化Token
+				}
+			)
+			.build();
+	}
+	
+}
+```
+
+
+### SecurityContextHolder
+上下文管理
+
+
+### AuthenticationManager
+用户认证管理器
+提供UserDetailsService、PasswordEncoder
+
+
+### UserDetailsService
+用户信息查询服务类
+
+自定义UserDetailsService重写loadUserByUsername()方法
+
+
+
+#### JdbcUserDetailsManager
+框架提供的Jdbc用户信息查询服务类
+users、authorities默认表
+
+
+
+### PasswordEncoder
+密码加密器
+
+### PersistentTokenRepository
+持久化记住我Token
+persistent_login默认表
+
+
 
 ## 基础介绍
 
-<img src="SpringSecurity.assets/image-20230117134704969.png" alt="image-20230117134704969" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230117134704969.png)
 
 认证
 
@@ -22,16 +115,7 @@
 
 过滤器链
 
-![139774](SpringSecurity.assets/139774.jpg)
-
-
-
-
-
-
-
-
-
+![过滤器链](SpringSecurity.assets/139774.JPG)
 
 
 
@@ -49,7 +133,7 @@ org.springframework.boot
 
 Filters实现：
 
-<img src="SpringSecurity.assets/image-20230117141509143.png" alt="image-20230117141509143" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230117141509143.png)
 
 默认filters
 
@@ -76,14 +160,13 @@ filters:
 
 默认登录页面生成：
 
-<img src="SpringSecurity.assets/image-20230117143723450.png" alt="image-20230117143723450" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230117143723450.png)
 
 
 
 认证管理器：（责任链模式）
 
-<img src="SpringSecurity.assets/image-20230117145557407.png" alt="image-20230117145557407" style="zoom:67%;" />
-
+![](SpringSecurity.assets/image-20230117145557407.png)
 
 
 
@@ -100,7 +183,7 @@ TokenBasedRememberMeServices实现类processAutoLoginCookie()
 
 PersistentTokenBasedRemeberMeServices实现类processAutoLoginCookie()生成令牌
 
-<img src="SpringSecurity.assets/image-20230119182249106.png" alt="image-20230119182249106" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230119182249106.png)
 
 PersistentTokenRepository根据series查询token值
 
@@ -110,7 +193,7 @@ PersistentTokenRepository根据series查询token值
 
 cookies令牌值
 
-<img src="SpringSecurity.assets/image-20230119180600422.png" alt="image-20230119180600422"  />
+![](SpringSecurity.assets/image-20230119180600422.png)
 
 
 
@@ -152,7 +235,7 @@ FindByIndexNameSessionRepository
 
 csrf令牌，服务端生成
 
-<img src="SpringSecurity.assets/image-20230120001654714.png" alt="image-20230120001654714" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120001654714.png)
 
 CsrfFilter
 
@@ -166,9 +249,9 @@ CookieCsrfTokenRepository实现类的loadToken()方法
 
 ### CORS
 
-<img src="SpringSecurity.assets/image-20230120003716428.png" alt="image-20230120003716428" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120003716428.png)
 
-<img src="SpringSecurity.assets/image-20230120003912642.png" alt="image-20230120003912642" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120003912642.png)
 
 CorsConfigurationSource
 
@@ -188,7 +271,14 @@ UrlBasedCorsConfigurationSource
 
 
 
+
+
+
 ## 核心内容
+API
+```yaml
+
+```
 
 ### SpringBootWebSecurityConfiguration
 
@@ -216,12 +306,11 @@ ProviderManager
 
 AuthenticationProvider
 
-<img src="SpringSecurity.assets/image-20230118023123094.png" alt="image-20230118023123094" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230118023123094.png)
 
-<img src="SpringSecurity.assets/image-20230118023159630.png" alt="image-20230118023159630" style="zoom:67%;" />![image-20230118023724668](SpringSecurity.assets/image-20230118023724668.png)![image-20230118023739796](SpringSecurity.assets/image-20230118023739796.png)
+![](SpringSecurity.assets/image-20230118023159630.png) ![image-20230118023724668](SpringSecurity.assets/image-20230118023724668.png)![image-20230118023739796](SpringSecurity.assets/image-20230118023739796.png)
 
-<img src="SpringSecurity.assets/image-20230118023746935.png" alt="image-20230118023746935" style="zoom:67%;" />
-
+![](SpringSecurity.assets/image-20230118023746935.png)
 DaoAuthenticationProvider调用UserDetailService进行认证
 
 
@@ -230,13 +319,13 @@ DaoAuthenticationProvider调用UserDetailService进行认证
 
 认证流程：
 
-<img src="SpringSecurity.assets/image-20230118022234256.png" alt="image-20230118022234256" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230118022234256.png)
 
 
 
 前后端分离认证：
 
-<img src="SpringSecurity.assets/image-20230119010503473.png" alt="image-20230119010503473" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230119010503473.png)
 
 
 
@@ -364,9 +453,9 @@ LogoutSuccessHandler注销成功处理
 
 ### SpringContextHolder
 
-<img src="SpringSecurity.assets/image-20230118020542316.png" alt="image-20230118020542316" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230118020542316.png)
 
-<img src="SpringSecurity.assets/image-20230118020830565.png" alt="image-20230118020830565" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230118020830565.png)
 
 
 
@@ -388,7 +477,7 @@ FilterSecurityInterceptor过滤器实现权相比较，用户授权在Authentica
 
 
 
-<img src="SpringSecurity.assets/image-20230120014802034.png" alt="image-20230120014802034" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120014802034.png)
 
 
 
@@ -397,14 +486,13 @@ FilterSecurityInterceptor过滤器实现权相比较，用户授权在Authentica
 
 
 
-
-<img src="SpringSecurity.assets/image-20230120011903302.png" alt="image-20230120011903302" style="zoom: 67%;" />
+![](SpringSecurity.assets/image-20230120011903302.png)
 
 GrantedAuthority
 
 权限管理策略
 
-<img src="SpringSecurity.assets/image-20230120012158846.png" alt="image-20230120012158846" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120012158846.png)
 
 
 
@@ -412,15 +500,15 @@ GrantedAuthority
 
 @EnableGlobalMethodSecurity
 
-<img src="SpringSecurity.assets/image-20230120013312465.png" alt="image-20230120013312465" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120013312465.png)
 
 
 
 
 
-<img src="SpringSecurity.assets/image-20230120014642293.png" alt="image-20230120014642293" style="zoom:67%;" />![image-20230120015041028](SpringSecurity.assets/image-20230120015041028.png)
+![](SpringSecurity.assets/image-20230120014642293.png)
 
-<img src="SpringSecurity.assets/image-20230120015047100.png" alt="image-20230120015047100" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120015047100.png)
 
 
 
@@ -463,60 +551,45 @@ AntPathMatcher路径匹配器
 
 
 
-
-
-
-## API
-
-```
-
-```
-
-
-
-
-
-
-
 ## OAuth2
 
-<img src="SpringSecurity.assets/image-20230120023026343.png" alt="image-20230120023026343" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120023026343.png)
 
 四种授权模式：
 
-<img src="SpringSecurity.assets/image-20230120023514319.png" alt="image-20230120023514319" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120023514319.png)
 
-<img src="SpringSecurity.assets/image-20230120023712510.png" alt="image-20230120023712510" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120023712510.png)
 
 
 
 一、授权码模式
 
-<img src="SpringSecurity.assets/image-20230120155450549.png" alt="image-20230120155450549" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120155450549.png)
 
-<img src="SpringSecurity.assets/image-20230120155701931.png" alt="image-20230120155701931" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120155701931.png)
 
 
 
-<img src="SpringSecurity.assets/image-20230120160049599.png" alt="image-20230120160049599" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120160049599.png)
 
 
 
 二、简化模式
 
-<img src="SpringSecurity.assets/image-20230120160155201.png" alt="image-20230120160155201" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120160155201.png)
 
-<img src="SpringSecurity.assets/image-20230120160303061.png" alt="image-20230120160303061" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120160303061.png)
 
 
 
 三、密码模式
 
-<img src="SpringSecurity.assets/image-20230120160624382.png" alt="image-20230120160624382" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120160624382.png)
 
 四、客户端模式
 
-<img src="SpringSecurity.assets/image-20230120160723001.png" alt="image-20230120160723001" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120160723001.png)
 
 
 
@@ -524,7 +597,7 @@ AntPathMatcher路径匹配器
 
 标准接口：
 
-<img src="SpringSecurity.assets/image-20230120160834555.png" alt="image-20230120160834555" style="zoom:67%;" />
+![](SpringSecurity.assets/image-20230120160834555.png)
 
 
 

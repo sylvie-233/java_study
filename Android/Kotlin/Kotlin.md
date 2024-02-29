@@ -5,7 +5,8 @@
 > Date: 23/5/23
 >
 > Point:
-> 	全网稀缺】2021Android从零入门到实战(Kotlin最新版)：P5
+> 	全网稀缺】2021Android从零入门到实战(Kotlin最新版)：P27
+> 	
 
 ## 基础介绍
 
@@ -13,10 +14,12 @@
 ```
 关键字:
 	break:
+	const:
 	false:
 	in:
 	println:
 	true:
+	typealias: 类型别名
 	val:
 	var:
 	
@@ -87,6 +90,10 @@
 ```
 
 
+#### 范围
+
+
+
 
 
 
@@ -109,6 +116,22 @@ fun xxx() {
 ```
 
 
+##### also
+
+##### with
+
+##### let
+
+##### apply
+
+##### run
+
+
+
+
+
+
+#### when
 
 
 
@@ -244,7 +267,7 @@ lazy
 
 #### data class
 
-数据类
+数据类（getter、setter），Bean
 
 ```
 data class:
@@ -256,13 +279,34 @@ data class:
 
 
 #### sealed class
-
-密封类、多类的包装
+密封类、多类的包装（类似枚举类型的作用）
 
 
 
 #### object
+成员函数、属性、静态函数
 
+
+
+
+
+### 协程
+
+#### CoroutineScope
+ 
+- launch(): Job
+	- join()
+	- cancelAndJoin()
+	- cancel()
+- async(): Deferred
+	- await()
+	- getCompleted()
+- runBlocking()
+- withTimeout()
+
+
+
+##### GlobalScope
 
 
 

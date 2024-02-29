@@ -146,16 +146,93 @@ Application启动后执行自定义任务
 
 
 ## 核心内容
+API
+```
+jakarta:
+	persistence:
+		Column: 数据库字段映射
+		Entity: JPA实体类
+		GeneratedValue: key自增
+		Id: 
+		Table: 映射数据库表
+	validation:
+		ConstraintViolationException:
+org.springframework
+	boot:
+		autoconfigure:
+			web:
+				servlet:
+					
+			SpringBootApplication:
+		SpringApplication:
+	data:
+		jpa:
+			repository:
+				JpaRepository:
+	securiry:
+		core:
+			context:
+				SecurityContextHolder:
+			userdetails:
+				User:
+	validation:
+		annotaion:
+			Validated:
+	web:
+		bind:
+			annotation:
+				ControllerAdvice:
+				ExceptionHandler:
+				ResponseBody:
+```
 
+配置
+```yaml
+spring:
+	datasource:
+		url:
+		username:
+		password:
+		driver-class-name:
+	jpa:
+		hibernate: 
+			ddl-auto: update|validate|
+		show-sql: true
+	mvc:
+		throw-exception-if-no-handler-found: true
+	security:
+		user:
+			name:
+			password:
+			roles:
+	web:
+		resources:
+			add-mappings: false
+			static-locations: classpath:/xxx
+
+server:
+	port:
 ```
-org.springframework.boot:
-	autoconfigure:
-		web:
-			servlet:
-				
-		SpringBootApplication:
-	SpringApplication:
-```
+
+
+
+### 拦截器
+
+
+
+### 异常处理
+
+
+
+### 模板引擎
+
+
+
+### Runner
+
+
+### Listener
+
 
 
 
@@ -166,10 +243,120 @@ org.springframework.boot:
 ## 第三方库
 
 
+### SpringSecurity
+
+认证授权框架
 
 
 
 
+### spring-boot-starter-validation
+
+接口数据校验框架
 
 
 
+@Validated标注控制器、@Valid标注实体类参数
+
+
+
+### springdoc
+
+接口文档生成Swagger
+
+依赖
+```yaml
+org.springdoc:
+	springdoc-openapi-starter-webmvc-ui:
+		2.1.0
+```
+
+API
+```yaml
+ io.swagger.v3.oas:
+	 annotaions:
+		 media:
+			 Schema: 标注实体类
+		 responses:
+			 ApiResponse:
+			 ApiResponses: 标注控制器返回参数信息
+		 tags:
+			 Tag: 标注控制器信息
+		 Operation: 标注控制器方法
+		 Parameter: 标注控制器方法参数	
+```
+
+自定义OpenAPI填写相关配置信息
+
+
+### spring-boot-starter-actuator
+
+项目运行监控
+
+
+
+
+### spring-boot-starter-jdbc
+
+
+
+### spring-boot-starter-data-jpa
+
+持久层ORM框架
+
+
+JpaRepository<Entity,ID>
+
+条件判断函数：Repository接口方法名称自动生成
+
+关联查询：对象依赖
+```
+:
+	@OneToOne: 一对一
+	@OneToMany: 一对多
+	@ManyToOne: 多对一
+	@ManyToMany: 多对多
+		@JoinColumn: 关联字段外键
+		@JoinTable: 中间关联表
+```
+
+
+自定义SQL语句
+Repository注解接口方法
+```
+:
+	@Modifying:
+	@Param: 设置SQL参数
+	@Query:
+	
+```
+
+
+
+### mybatis-plus-boot-starter
+
+依赖
+```yaml
+com.baomidou:
+	mybatis-plus-boot-starter:
+		3.5.3
+```
+
+
+注解标注
+```
+:
+	@TableName:
+	@TableField:
+```
+
+
+BaseMapper<Entity>
+Wrapper条件拼接
+分页查询
+
+IService、ServiceImpl
+
+
+
+代码生成器
