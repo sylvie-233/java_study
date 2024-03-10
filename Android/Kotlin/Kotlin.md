@@ -320,12 +320,49 @@ data class:
 ### kotlin
 
 ```
-
-
-ranges:
-	IntProgression:
-	
-reflect:
+kotlin:
+	annotation:
+	browser:
+	collections:
+		listOf():
+		mutableListOf():
+		mutableMapOf():
+		mutableSetOf():
+		setOf():
+	comparisons:
+	concurrent:
+	constracts:
+	coroutines:
+		android:
+		channels:
+		flow:
+		future:
+		selects:
+		stream:
+		sync:
+		time:
+	dom:
+	enums:
+	io:
+		encoding:
+		path:
+		println():
+	js:
+	jvm:
+	math:
+	native:
+		concurrent:
+		ref:
+		runtime:
+	properties:
+	random:
+	ranges:
+		IntProgression:
+	reflect:
+	streams:
+	system:
+	text:
+	time:
 ```
 
 
@@ -333,8 +370,13 @@ reflect:
 ### kotlinx
 
 ```
-coroutines:
-	
+kotlinx:
+	browser:
+	cinterop:
+	coroutines:
+	dom:
+	wasm:
+		jsinterop:
 ```
 
 
