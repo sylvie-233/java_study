@@ -427,6 +427,7 @@ AppCompatActivity:
 ```
 Intent:
 	ACTION_SEND:
+	ACTION_VIEW: 打开浏览器
 	EXTRA_SUBJECT:
 	EXTRA_TEXT:
     FLAG_ACTIVITY_NEW_TASK:
