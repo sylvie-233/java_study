@@ -5,7 +5,7 @@
 > Date: 23/6/1
 >
 > Point:
-> 	Kotlin+Jetpack实战开发在线教育App：P26
+> 	Kotlin+Jetpack实战开发在线教育App：P30
 > 	android 论坛项目开发实战：P12
 
 
