@@ -7,7 +7,6 @@ Sylvie233的Java基础学习~~~
 > Date: 2022/10/21
 >
 > Point: 
->	Java 设计模式：P12
 >		
 > ​
 
